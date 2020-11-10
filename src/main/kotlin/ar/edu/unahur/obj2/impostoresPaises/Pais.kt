@@ -17,9 +17,11 @@ class Pais(
 
     fun compartenIdiomas(pais: Pais) = (idomasOficiales intersect pais.idomasOficiales).isNotEmpty()
 
-
     fun esLimitrofeDelString(pais2: String) =
         paisesLimitrofes.any { it?.nombre == pais2 }
+
+    fun esPotencialAliadoDe(pais2: String) = bloqueRegional.contains(pais2)
+
 
 
 }

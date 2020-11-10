@@ -38,7 +38,7 @@ class ObservatorioTest : DescribeSpec({
         }
     }
 
-    describe("si los paises son aliados o no "){
+    describe("3. Si los paises son aliados o no "){
         it("los paises son aliados"){
             //Observatorio.potencialAliados(mexico, eeuu).shouldBeTrue()
         }
