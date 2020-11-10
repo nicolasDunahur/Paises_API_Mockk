@@ -8,3 +8,4 @@ val api = RestCountriesAPI()
 api.buscarPaisesPorNombre("guay")
 
 api.paisConCodigo("CHL")
+api.buscarPaisesPorNombre("USA")
