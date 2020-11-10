@@ -13,7 +13,7 @@ class Pais(
 
     fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais)
 
-    fun esLimitrofe(pais: Pais) = paisesLimitrofes.contains(pais)
+    fun esLimitrofe(pais: Pais) = paisesLimitrofes?.contains(pais)
 
     fun compartenIdiomas(pais: Pais) = (idomasOficiales intersect pais.idomasOficiales).isNotEmpty()
 
