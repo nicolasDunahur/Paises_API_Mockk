@@ -16,7 +16,7 @@ class Pais(
     fun esLimitrofeDelString(pais: Pais) =
             paisesLimitrofes.contains(pais)
 
-    fun esPotencialAliadoDe(pais2: String) = bloqueRegional.contains(pais2)
+    fun esPotencialAliadoDe(pais2: Pais) = bloqueRegional.intersect(pais2.bloqueRegional)
 
 
 

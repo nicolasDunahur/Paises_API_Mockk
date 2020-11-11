@@ -17,8 +17,11 @@ object Observatorio {
     }
 
 
-    fun sonPotencialesAliados(pais1: String, pais2: String) =
-            buscarPais(pais1).esPotencialAliadoDe(pais2)
+    fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
+        val unPais = buscarPais(pais1)
+        val otroPais = buscarPais(pais2)
+        return unPais.esPotencialAliadoDe(otroPais).isNotEmpty()
+    }
 
     private fun ordenarlosPorPoblacion() { paises.sortBy { it.poblacion } }
 
@@ -31,7 +34,7 @@ object Observatorio {
 
     //fun continenteMasPoblado():String =
     //      listaPorContinentes()
-    // Hay alguna funcion que haga todo junto? debe contar repetidos
+
 
 
 
