@@ -16,7 +16,9 @@ class Pais(
     fun esLimitrofeDelString(pais: Pais) =
             paisesLimitrofes.contains(pais)
 
-    fun esPotencialAliadoDe(pais2: Pais) = bloqueRegional.intersect(pais2.bloqueRegional)
+    fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
+
+    fun necesitaTraduccionPara(otroPais: Pais): Boolean = idomasOficiales.intersect(otroPais.idomasOficiales).isEmpty()
 
 
 

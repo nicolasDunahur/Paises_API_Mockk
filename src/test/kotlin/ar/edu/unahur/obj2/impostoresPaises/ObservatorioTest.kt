@@ -5,7 +5,7 @@ import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 
 class ObservatorioTest : DescribeSpec({
-    val argentina = Pais("Argentina","ARG",45000000,"America", listOf<String>("UNASUR","MERCOSUR"), listOf(" Español"))
+    val argentina = Pais("Argentina","ARG",45000000,"America", listOf<String>("UNASUR","MERCOSUR"), listOf("Español"))
     val chile = Pais("Chile","CHL",18191900,"America", listOf("ALCA","MERCOSUR"), listOf("Español"))
     val mexico = Pais("Mexico","MEX",122273473,"America", listOf("NAFTA","Pacific Alliance"), listOf("Español"))
     val eeuu = Pais("EEUU", "USA",323947000,"America", listOf("NAFTA", "OTAN"), listOf("Ingles"))
@@ -29,10 +29,11 @@ class ObservatorioTest : DescribeSpec({
     describe("Requrimiento 2 : indica si los paises necesitan traduccion"){
 
         it("los paises no nesecitan traduccion, tienen algun idoma oficial igual"){
-         //   Observatorio.necesitanTraduccion("Argentina","Mexico")?.shouldBeFalse()
+         Observatorio.necesitanTraduccion("Argentina","Mexico")?.shouldBeFalse()
         }
+
         it( "los paises necesitan tradiccion, no comparten idioma oficial"){
-           // Observatorio.necesitanTraduccion("Chile","EEUU")?.shouldBeFalse()
+           Observatorio.necesitanTraduccion("Chile","EEUU")?.shouldBeTrue()
         }
     }
     describe("Requerimiento 3: conocer si son potenciales aliados"){
