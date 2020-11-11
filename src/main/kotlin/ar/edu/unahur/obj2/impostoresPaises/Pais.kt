@@ -7,20 +7,17 @@ class Pais(
         val continente : String,
         val bloqueRegional : List<String>,
         val idomasOficiales : List<String>
-        ){
+){
 
-    val paisesLimitrofes =  mutableListOf<Pais>()
+    var paisesLimitrofes =  mutableListOf<Pais>()
 
     fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais)
 
-    fun esLimitrofe(pais: Pais) = paisesLimitrofes?.contains(pais)
-
-    fun compartenIdiomas(pais: Pais) = (idomasOficiales intersect pais.idomasOficiales).isNotEmpty()
-
-    fun esLimitrofeDelString(pais2: String) =
-        paisesLimitrofes.any { it?.nombre == pais2 }
+    fun esLimitrofeDelString(pais: Pais) =
+            paisesLimitrofes.contains(pais)
 
     fun esPotencialAliadoDe(pais2: String) = bloqueRegional.contains(pais2)
+
 
 
 
