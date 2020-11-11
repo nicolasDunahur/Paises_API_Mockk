@@ -9,12 +9,12 @@ class Pais(
         val idomasOficiales : List<String>
 ){
 
-    var paisesLimitrofes =  mutableListOf<Pais>()
+    var paisesLimitrofes =  mutableListOf<String>()
 
-    fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais)
+    fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais.nombre)
 
-    fun esLimitrofeDelString(pais: Pais) =
-            paisesLimitrofes.contains(pais)
+    fun esLimitrofeDe(elNombre: String) =
+            paisesLimitrofes.contains(elNombre)
 
     fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
 

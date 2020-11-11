@@ -3,10 +3,10 @@ package ar.edu.unahur.obj2.impostoresPaises
 object Observatorio {
     var paises = mutableListOf<Pais>()
 
-    fun sonLimitrofes(nombre: String, nombre2: String): Boolean {
-        val unPais = buscarPais(nombre)
-        val otroPais = buscarPais(nombre2)
-        return unPais.esLimitrofeDelString(otroPais)
+    fun sonLimitrofes(unPais: String, otroPais: String): Boolean {
+        val unPais = buscarPais(unPais)
+        //val otroPais = buscarPais(nombre2)
+        return unPais.esLimitrofeDe(otroPais)
     }
 
     fun buscarPais(nombre: String) = paises.find{ it.nombre == nombre }!!
