@@ -14,22 +14,22 @@ class ObservatorioTest : DescribeSpec({
     val potugal = Pais("Portugal", "POR",323947,"Europa", listOf("OTAN"), listOf("Portugues"))
 
 
-    Observatorio.agregarPais(
-            listOf(argentina,chile,mexico,eeuu,brasil,potugal)
-    )
+    Observatorio.agregarPais(argentina)
+    Observatorio.agregarPais(chile)
+    Observatorio.agregarPais(mexico)
+    Observatorio.agregarPais(eeuu)
+    Observatorio.agregarPais(brasil)
+    Observatorio.agregarPais(potugal)
+
+    argentina.agregarPaisesLimitrofes(chile)
+    chile.agregarPaisesLimitrofes(argentina)
+    mexico.agregarPaisesLimitrofes(eeuu)
+    brasil.agregarPaisesLimitrofes(argentina)
 
     describe("Requerimiento :1 - indicar si los dos paises son limitrofes"){
 
-        argentina.agregarPaisesLimitrofes(chile)
-        chile.agregarPaisesLimitrofes(argentina)
-        mexico.agregarPaisesLimitrofes(eeuu)
-        brasil.agregarPaisesLimitrofes(argentina)
-
         it("los paises son limitrofes"){
             Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
-
-            argentina.esLimitrofeDe("Chile").shouldBeTrue()
-            argentina.nombre.shouldBe("Argentina")
         }
         it("los paises no son limitrofes"){
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
