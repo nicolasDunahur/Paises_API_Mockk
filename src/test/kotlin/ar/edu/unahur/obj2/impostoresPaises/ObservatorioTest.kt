@@ -26,8 +26,10 @@ class ObservatorioTest : DescribeSpec({
         brasil.agregarPaisesLimitrofes(argentina)
 
         it("los paises son limitrofes"){
-            //Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
-            // no anda///////////////////////////////////////////////////////////////////////////////////
+            Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
+
+            argentina.esLimitrofeDe("Chile").shouldBeTrue()
+            argentina.nombre.shouldBe("Argentina")
         }
         it("los paises no son limitrofes"){
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
