@@ -76,7 +76,7 @@ class ObservatorioTest : DescribeSpec({
     }
     describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
         it ("El continente mas poblado es America"){
-           // Observatorio.continenteMasPoblado().shouldBe("America")
+           Observatorio.continenConMasPobla().shouldBe("America")
         }
     }
 
