@@ -23,12 +23,11 @@ object Observatorio {
         return unPais.comparteBloqueCon(otroPais) && !unPais.necesitaTraduccionPara(otroPais)
     }
 
-    private fun ordenarlosPorPoblacion() { paises.sortBy { it.poblacion } }
+    fun ordenarlosPorPoblacion() { paises.sortByDescending { it.poblacion } }
 
+    fun paisesOrdenadosPorNombre() = paises.map { it.nombre }
 
-    fun paisesConMayorPoblacion() =
-            paises.take(5)
-
+    fun paisesConMayorPoblacion() = paisesOrdenadosPorNombre().take(5)
 
     fun listaPorContinentes() =  paises.map { it.continente  }
 

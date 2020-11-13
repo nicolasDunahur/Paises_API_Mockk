@@ -3,7 +3,12 @@ package ar.edu.unahur.obj2.impostoresPaises
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldContainExactly
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldHave
 
 class ObservatorioTest : DescribeSpec({
     val argentina = Pais("Argentina","ARG",45000000,"America", listOf<String>("UNASUR","MERCOSUR"), listOf("Español"))
@@ -55,7 +60,18 @@ class ObservatorioTest : DescribeSpec({
     }
     describe("Requerimiento 4: Obtener los nombres de los 5 países con mayor población"){
         it ("los paises no son aliados, no comparte el mismo bloque"){
-            Observatorio.paisesConMayorPoblacion().containsAll(listOf(argentina,chile,mexico,eeuu,brasil))
+            //Observatorio.paisesConMayorPoblacion().shouldContainAll("Brasil", "EEUU", "Mexico", "Argentina", "Chile")
+
+            //Observatorio.paisesConMayorPoblacion().shouldContain("Brasil")
+
+            //Observatorio.paisesConMayorPoblacion().shouldContain("EEUU")
+            /*
+            Observatorio.paisesConMayorPoblacion().shouldContain("Mexico")
+            Observatorio.paisesConMayorPoblacion().shouldContain( "Argentina")
+            Observatorio.paisesConMayorPoblacion().shouldContain("Chile")
+
+             */
+
         }
     }
 
