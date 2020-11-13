@@ -25,56 +25,19 @@ object Observatorio {
 
     fun ordenarlosPorPoblacion() { paises.sortByDescending { it.poblacion } }
 
-    fun paisesOrdenadosPorNombre() = paises.map { it.nombre }
-
-    fun paisesConMayorPoblacion() = paisesOrdenadosPorNombre().take(5)
-
     fun necesitanTraduccion(unPais: String, otroPais: String): Boolean {
         val unPais = buscarPais(unPais)
         val otroPais = buscarPais(otroPais)
         return unPais.necesitaTraduccionPara(otroPais)
     }
 
+    //4
+    fun paisesOrdenadosPorNombre() = paises.map { it.nombre }
+
+    fun paisesConMayorPoblacion() = paisesOrdenadosPorNombre().filterIndexed { index, s -> (index != 5)}
+
+    // 5
     fun continenConMasPobla() = paises.maxByOrNull { it.poblacion }?.continente
 
-
-
-
-
-
-
-
-
-
-/*
-
-Y para el 5 tengo una lista de continentes
-Tengo una función que me da la cantidad de habitantes por continente (le pasó por parámetro el continente)
-
-Y después una función que recorre la lista de continentes y hace un maxBy a la función de habitantes por continente
-
-    //fun continenteMasPoblado():String =
-    //      listaPorContinentes()
-
-
-
- fun listaPorElContinente(unContiente:String):List<Pais> =  paises.filter { it.continente == unContiente }!!
-
-    fun habitantesEnElContinente(unContiente:String) =
-            listaPorElContinente(unContiente).sumBy { it.poblacion }
-
-    fun listaDeHabitantesPorContienentes()=
-            mutableListOf<Int>(
-                    habitantesEnElContinente("America"),
-                    habitantesEnElContinente("Europa"),
-                    habitantesEnElContinente("Africa"),
-                    habitantesEnElContinente("Asia"),
-                    habitantesEnElContinente("Oceania")
-            )
-
-
-    fun cantContinenteMasPoblado() = listaDeHabitantesPorContienentes()
-
-*/
 
 }

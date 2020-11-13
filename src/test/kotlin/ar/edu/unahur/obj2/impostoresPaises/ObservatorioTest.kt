@@ -60,18 +60,7 @@ class ObservatorioTest : DescribeSpec({
     }
     describe("Requerimiento 4: Obtener los nombres de los 5 países con mayor población"){
         it ("los paises no son aliados, no comparte el mismo bloque"){
-            //Observatorio.paisesConMayorPoblacion().shouldContainAll("Brasil", "EEUU", "Mexico", "Argentina", "Chile")
-
-            //Observatorio.paisesConMayorPoblacion().shouldBe("Brasil")
-
-            //Observatorio.paisesConMayorPoblacion().shouldContain("EEUU")
-            /*
-            Observatorio.paisesConMayorPoblacion().shouldContain("Mexico")
-            Observatorio.paisesConMayorPoblacion().shouldContain( "Argentina")
-            Observatorio.paisesConMayorPoblacion().shouldContain("Chile")
-
-             */
-
+            Observatorio.paisesConMayorPoblacion().shouldContainAll("Brasil", "EEUU", "Mexico", "Argentina", "Chile")
         }
     }
     describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
@@ -79,7 +68,4 @@ class ObservatorioTest : DescribeSpec({
            Observatorio.continenConMasPobla().shouldBe("America")
         }
     }
-
-
-
 })
