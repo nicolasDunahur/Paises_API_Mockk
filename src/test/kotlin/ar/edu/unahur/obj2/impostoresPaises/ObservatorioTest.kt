@@ -15,8 +15,8 @@ class ObservatorioTest : DescribeSpec({
     val chile = Pais("Chile","CHL",18191900,"America", listOf("ALCA","MERCOSUR"), listOf("Español"))
     val mexico = Pais("Mexico","MEX",122273473,"America", listOf("NAFTA","Pacific Alliance"), listOf("Español"))
     val eeuu = Pais("EEUU", "USA",323947000,"America", listOf("NAFTA", "OTAN"), listOf("Ingles"))
-    val brasil = Pais("Brasil", "BRA",3239470000,"America", listOf("MERCOSUR"), listOf("Portugues"))
-    val potugal = Pais("Portugal", "POR",323947,"Europa", listOf("OTAN"), listOf("Portugues"))
+    val brasil = Pais("Brasil", "BRA",523947000,"America", listOf("MERCOSUR"), listOf("Portugues"))
+    val potugal = Pais("Portugal", "POR",32394,"Europa", listOf("OTAN"), listOf("Portugues"))
 
 
     Observatorio.agregarPais(argentina)
@@ -62,7 +62,7 @@ class ObservatorioTest : DescribeSpec({
         it ("los paises no son aliados, no comparte el mismo bloque"){
             //Observatorio.paisesConMayorPoblacion().shouldContainAll("Brasil", "EEUU", "Mexico", "Argentina", "Chile")
 
-            //Observatorio.paisesConMayorPoblacion().shouldContain("Brasil")
+            //Observatorio.paisesConMayorPoblacion().shouldBe("Brasil")
 
             //Observatorio.paisesConMayorPoblacion().shouldContain("EEUU")
             /*
@@ -72,6 +72,11 @@ class ObservatorioTest : DescribeSpec({
 
              */
 
+        }
+    }
+    describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
+        it ("El continente mas poblado es America"){
+           // Observatorio.continenteMasPoblado().shouldBe("America")
         }
     }
 

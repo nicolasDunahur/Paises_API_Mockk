@@ -1,5 +1,6 @@
 import ar.edu.unahur.obj2.impostoresPaises.Observatorio
 import ar.edu.unahur.obj2.impostoresPaises.Pais
+import io.mockk.InternalPlatformDsl.toArray
 
 
 // Algunos ejemplos para que jueguen un poco
@@ -8,7 +9,7 @@ import ar.edu.unahur.obj2.impostoresPaises.Pais
 /*
 fun traerPaisPorNombre(nombre: String) = Observatorio.paises.find { it.nombre == nombre }
 Observatorio.buscarPais("Argentina")
-*/
+
 /////////
 
 
@@ -16,7 +17,7 @@ val argentina = Pais("Argentina","ARG",45000000,"America", listOf<String>("UNASU
 val chile = Pais("Chile","CHL",18191900,"America", listOf("ALCA","MERCOSUR"), listOf("Español"))
 val mexico = Pais("Mexico","MEX",122273473,"America", listOf("NAFTA","Pacific Alliance"), listOf("Español"))
 val eeuu = Pais("EEUU", "USA",323947000,"America", listOf("NAFTA", "OTAN"), listOf("Ingles"))
-val brasil = Pais("Brasil", "BRA",3239470000,"America", listOf("MERCOSUR"), listOf("Portugues"))
+//val brasil = Pais("Brasil", "BRA",3239470000,"America", listOf("MERCOSUR"), listOf("Portugues"))
 val potugal = Pais("Portugal", "POR",323947,"Europa", listOf("OTAN"), listOf("Portugues"))
 
 Observatorio.agregarPais(argentina)
@@ -32,3 +33,4 @@ mexico.agregarPaisesLimitrofes(eeuu)
 brasil.agregarPaisesLimitrofes(argentina)
 
 Observatorio.paisesConMayorPoblacion()
+*/

@@ -3,7 +3,7 @@ package ar.edu.unahur.obj2.impostoresPaises
 class Pais(
         val nombre :String,
         val codigoISo3 : String,
-        val poblacion : Long,
+        val poblacion : Int,
         val continente : String,
         val bloqueRegional : List<String>,
         val idomasOficiales : List<String>
