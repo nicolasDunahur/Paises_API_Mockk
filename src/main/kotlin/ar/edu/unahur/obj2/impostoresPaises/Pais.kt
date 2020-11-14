@@ -7,6 +7,8 @@ class Pais(
         val continente : String,
         val bloqueRegional : List<String>,
         val idomasOficiales : List<String>
+
+
 ){
 
     var paisesLimitrofes =  mutableListOf<Pais>()
