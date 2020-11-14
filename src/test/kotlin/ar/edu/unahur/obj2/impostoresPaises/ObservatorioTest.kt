@@ -9,6 +9,9 @@ import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldHave
+import io.mockk.every
+import io.mockk.mockk
+import java.util.*
 
 class ObservatorioTest : DescribeSpec({
     val argentina = Pais("Argentina","ARG",45000000,"America", listOf<String>("UNASUR","MERCOSUR"), listOf("Español"))
@@ -32,11 +35,29 @@ class ObservatorioTest : DescribeSpec({
     brasil.agregarPaisesLimitrofes(argentina)
 
     describe("Requerimiento :1 - indicar si los dos paises son limitrofes"){
+        val api = mockk<RestCountriesAPI>()
+        val espaniol = Language("Espaniol")
+        val alca = RegionalBloc("A","ALCA")
+        val mercosur = RegionalBloc("M","MERCOSUR")
 
         it("los paises son limitrofes"){
+            every { api.buscarPaisesPorNombre("Chile") } returns listOf(
+                Country(
+                        "Chile",
+                        "CHL",
+                        "Santiago",
+                        "America",
+                        18191900,
+                        listOf(""),
+                        listOf(espaniol),
+                        listOf(alca,mercosur)
+                )
+            )
+
             Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
         }
         it("los paises no son limitrofes"){
+            every { api.buscarPaisesPorNombre("Chile") } returns emptyList()
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
         }
     }
