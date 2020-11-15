@@ -25,9 +25,9 @@ object Observatorio {
 
     fun ordenarlosPorPoblacion() { paises.sortByDescending { it.poblacion } }
 
-    fun necesitanTraduccion(unPais: String, otroPais: String): Boolean {
-        val unPais = buscarPais(unPais)
-        val otroPais = buscarPais(otroPais)
+    fun necesitanTraduccion(nombre1: String, nombre2: String): Boolean {
+        val unPais = buscarPais(nombre1)
+        val otroPais = buscarPais(nombre2)
         return unPais.necesitaTraduccionPara(otroPais)
     }
 
@@ -37,7 +37,7 @@ object Observatorio {
     fun paisesConMayorPoblacion() = paisesOrdenadosPorNombre().filterIndexed { index, s -> (index != 5)}
 
     // 5
-    fun continenConMasPobla() = paises.maxByOrNull { it.poblacion }?.continente
+    fun continenConMasPobla() = paises.maxBy { it.poblacion }!!.continente
 
 
 }
