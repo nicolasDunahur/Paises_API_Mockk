@@ -20,7 +20,7 @@ class Pais(
 
     fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
 
-    fun necesitaTraduccionPara(otroPais: Pais): Boolean = idomasOficiales.intersect(otroPais.idomasOficiales).isEmpty()
+    fun necesitaTraduccionPara(otroPais: Pais) = idomasOficiales.intersect(otroPais.idomasOficiales).isEmpty()
 
 
 

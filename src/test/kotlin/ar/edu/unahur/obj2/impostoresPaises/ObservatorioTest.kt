@@ -58,8 +58,6 @@ class ObservatorioTest : DescribeSpec({
         it("los paises son limitrofes"){
 
 
-
-
             Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
         }
         it("los paises no son limitrofes"){
@@ -73,19 +71,19 @@ class ObservatorioTest : DescribeSpec({
         it("los paises no nesecitan traduccion, tienen algun idioma oficial igual"){
 
 
-         Observatorio.necesitanTraduccion("Argentina","Mexico")?.shouldBeFalse()
+         Observatorio.necesitanTraduccion("Argentina","Mexico").shouldBeFalse()
         }
 
         it( "los paises necesitan tradiccion, no comparten idioma oficial"){
-           Observatorio.necesitanTraduccion("Chile","EEUU")?.shouldBeTrue()
+           Observatorio.necesitanTraduccion("Chile","EEUU").shouldBeTrue()
         }
     }
     describe("Requerimiento 3: conocer si son potenciales aliados"){
         it ("los paises no son aliados, no comparte el mismo bloque"){
-            Observatorio.sonPotencialesAliados("Argentina","Mexico")?.shouldBeFalse()
+            Observatorio.sonPotencialesAliados("Argentina","Mexico").shouldBeFalse()
         }
         it("los paises comparte un bloque regional, puede ser potenciales aliados"){
-           Observatorio.sonPotencialesAliados("Argentina","Chile")?.shouldBeTrue()
+           Observatorio.sonPotencialesAliados("Argentina","Chile").shouldBeTrue()
         }
     }
     describe("Requerimiento 4: Obtener los nombres de los 5 países con mayor población"){
