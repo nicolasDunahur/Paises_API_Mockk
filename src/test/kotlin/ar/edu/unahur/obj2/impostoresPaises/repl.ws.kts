@@ -5,4 +5,4 @@ val api = RestCountriesAPI()
 
 val country = api.paisConCodigo("ARG")
 
-paisAdapate.convertir(country)
+println(paisAdapate.convertir(country))
