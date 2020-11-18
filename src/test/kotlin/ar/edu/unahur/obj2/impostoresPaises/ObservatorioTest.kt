@@ -58,7 +58,7 @@ class ObservatorioTest : DescribeSpec({
         it("los paises son limitrofes"){
 
 
-            Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
+            Observatorio.sonLimitrofes("Argentina","Chile")?.shouldBeTrue()
         }
         it("los paises no son limitrofes"){
             every { api.buscarPaisesPorNombre("Chile") } returns emptyList()

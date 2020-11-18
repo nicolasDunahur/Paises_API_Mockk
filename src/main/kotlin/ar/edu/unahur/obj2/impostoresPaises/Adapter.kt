@@ -1,11 +1,15 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-class paisAdapate(pais: Country){
+object paisAdapate  {
 
-    val nombre = pais.name
-    val codigoISo3 = pais.alpha3Code
-    val poblacion = pais.population
-    val continente = pais.region
-    val bloqueRegional = pais.regionalBlocs
-    val idomasOficiales= pais.languages
+    fun convertir(country: Country) {
+        val pais = Pais(
+                country.name,
+                country.alpha3Code,
+                country.population,
+                country.region,
+                listOf(),
+                listOf()
+        )
+    }
 }
