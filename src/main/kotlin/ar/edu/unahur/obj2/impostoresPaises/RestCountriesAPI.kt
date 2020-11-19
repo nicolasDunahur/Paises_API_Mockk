@@ -54,7 +54,7 @@ class RestCountriesAPI {
 
 data class Country(
   val name: String,
-  val alpha3Code : String,
+  val alpha3Code: String,
   val capital: String,
   val region: String,
   val population: Long,
