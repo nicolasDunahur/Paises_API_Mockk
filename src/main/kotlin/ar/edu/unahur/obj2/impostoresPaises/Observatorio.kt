@@ -1,19 +1,18 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 object Observatorio {
-    var paises = mutableListOf<Pais>()
+    var api = RestCountriesAPI()
 
-    fun sonLimitrofes(unPais: String, otro: String): Boolean {
-        val unPais = buscarPais(unPais)
+    fun sonLimitrofes(unPais: String,): Boolean {
+        val unPais = paises.buscarPaisesPorNombre(unPais)
+        paisAdapter.convertir(otro)
         val otroPais = buscarPais(otro)
         return unPais.esLimitrofeDe(otroPais)
     }
 
-    fun buscarPais(nombre: String) = paises.find{ it.nombre == nombre }!!
-
-    fun agregarPais(pais: Pais) {
-        paises.add(pais)
-        ordenarlosPorPoblacion()
+    fun buscarPais(nombre: String): Pais {
+        val country = api.buscarPaisesPorNombre("Argentina")
+        return paisAdapter.convertirAPais(country.first())
     }
 
 

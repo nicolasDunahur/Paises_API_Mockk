@@ -1,8 +1,8 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-object paisAdapate {
+object paisAdapter {
 
-    fun convertir(country: Country) =
+    fun convertirAPais(country: Country) =
             Pais(
                  country.name,
                  country.alpha3Code,

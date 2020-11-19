@@ -1,8 +1,5 @@
+import ar.edu.unahur.obj2.impostoresPaises.Observatorio
 import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
-import ar.edu.unahur.obj2.impostoresPaises.paisAdapate
+import ar.edu.unahur.obj2.impostoresPaises.paisAdapter
 
-val api = RestCountriesAPI()
-
-val country = api.paisConCodigo("ARG")
-
-println(paisAdapate.convertir(country))
+val pais = Observatorio.buscarPais("Argentina")
