@@ -1,23 +1,23 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-package ar.edu.unahur.obj2.impostoresPaises
-
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
 
-class ObservatorioTest : DescribeSpec({
+class etapa2 : DescribeSpec({
 
     val api = mockk<RestCountriesAPI>()
 
-    val argentina = Pais(api.paisConCodigo("ARG"))
-    val chile = Pais(api.paisConCodigo("CHL"))
-    val mexico = Pais(api.paisConCodigo("MEX"))
-    val eeuu = Pais(api.paisConCodigo("EEUU"))
-    val brasil = Pais(api.paisConCodigo( "BRA"))
-    val potugal = Pais(api.paisConCodigo( "POR"))
+    val argentina = paisAdapter.convertirAPais(api.paisConCodigo("ARG"))
+    val chile = paisAdapter.convertirAPais(api.paisConCodigo("CHI"))
+    val mexico = paisAdapter.convertirAPais(api.paisConCodigo("MEX"))
+    val eeuu = paisAdapter.convertirAPais(api.paisConCodigo("EEUU"))
+    val brasil = paisAdapter.convertirAPais(api.paisConCodigo("BRA"))
+    val potugal = paisAdapter.convertirAPais(api.paisConCodigo("POR"))
 
     describe("Requerimiento :1 - indicar si los dos paises son limitrofes"){
 

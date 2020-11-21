@@ -4,16 +4,22 @@ object Observatorio {
     var api = RestCountriesAPI()
     var paises = mutableListOf<Pais>()
 
-    fun sonLimitrofes(unPais: String,otro: Country ): Boolean {
-        val unPais = buscarPaisPorNombre(unPais)
-        paisAdapter.convertirAPais(otro)
-        val otroPais = buscarPais(otro)
-        return unPais.esLimitrofeDe(otroPais)
+    fun sonLimitrofes(unPais: String, otro: String): Boolean {
+        val unPais = buscarPais(unPais)
+        val elOtro = buscarPais(otro)
+        return unPais.esLimitrofeDe(elOtro)
     }
 
     //// Etapa 1 - Borrar? ///
     fun buscarPaisPorNombre(nombre: String) = paises.find{ it.nombre == nombre }!!
-
+        /*
+            fun sonLimitrofes(unPais: String,otro: Country ): Boolean {
+                val unPais = buscarPaisPorNombre(unPais)
+                paisAdapter.convertirAPais(otro)
+                val otroPais = buscarPais(otro)
+                return unPais.esLimitrofeDe(otroPais)
+            }
+        */
     fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre("Argentina")
         return paisAdapter.convertirAPais(country.first())
