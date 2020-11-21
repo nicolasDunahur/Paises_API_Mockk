@@ -9,21 +9,10 @@ open class Pais(
         val idomasOficiales: List<String>,
         val capital: String,
         val paisesLimitrofes: List<String>
-
 ){
-
-    //var paisesLimitrofes =  mutableListOf<Pais>()
-
-    //fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais)
-
-    fun esLimitrofeDe(paisLimitrofe: Pais) =
-            paisesLimitrofes.contains(paisLimitrofe)
+    fun esLimitrofeDe(paisLimitrofe: Pais) = paisesLimitrofes.contains(paisLimitrofe)
 
     fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
 
     fun necesitaTraduccionPara(otroPais: Pais) = idomasOficiales.intersect(otroPais.idomasOficiales).size ==1
-
-
-
-
 }

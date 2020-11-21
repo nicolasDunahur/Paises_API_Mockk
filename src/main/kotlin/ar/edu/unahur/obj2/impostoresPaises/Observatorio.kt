@@ -10,16 +10,6 @@ object Observatorio {
         return unPais.esLimitrofeDe(elOtro)
     }
 
-    //// Etapa 1 - Borrar? ///
-    fun buscarPaisPorNombre(nombre: String) = paises.find{ it.nombre == nombre }!!
-        /*
-            fun sonLimitrofes(unPais: String,otro: Country ): Boolean {
-                val unPais = buscarPaisPorNombre(unPais)
-                paisAdapter.convertirAPais(otro)
-                val otroPais = buscarPais(otro)
-                return unPais.esLimitrofeDe(otroPais)
-            }
-        */
     fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre("Argentina")
         return paisAdapter.convertirAPais(country.first())
@@ -32,8 +22,6 @@ object Observatorio {
         return unPais.comparteBloqueCon(otroPais) && !unPais.necesitaTraduccionPara(otroPais)
     }
 
-    fun ordenarlosPorPoblacion() { paises.sortByDescending { it.poblacion } }
-
     fun necesitanTraduccion(nombre1: String, nombre2: String): Boolean {
         val unPais = buscarPais(nombre1)
         val otroPais = buscarPais(nombre2)
@@ -41,6 +29,9 @@ object Observatorio {
     }
 
     //4
+    //  se deben ordenar los paises para
+    fun ordenarlosPorPoblacion() { paises.sortByDescending { it.poblacion } }
+
     fun paisesOrdenadosPorNombre() = paises.map { it.nombre }
 
     fun paisesConMayorPoblacion() = paisesOrdenadosPorNombre().filterIndexed { index, s -> (index != 5)}

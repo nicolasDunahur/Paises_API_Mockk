@@ -22,7 +22,6 @@ object paisAdapter {
         return adaptado
     }
 
-
     fun bloquesAString(unCountry: Country) =
             unCountry.regionalBlocs.map {it.toString()}
 
@@ -31,6 +30,5 @@ object paisAdapter {
 
     fun limitrofesAString(unCountry: Country) =
             unCountry.borders.map {it.toString()}
-
 }
 
