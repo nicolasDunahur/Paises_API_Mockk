@@ -1,13 +1,12 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-object paisAdapter {
+object adaptador {
 
     var api = RestCountriesAPI()
 
     fun convertirAPais(country: Country) : Pais {
         val bloques = bloquesAString(country)
         val lenguajes = lenguajesAString(country)
-        val limitrofes = limitrofesAString(country)
 
         val adaptado = Pais(
                 country.name,
@@ -17,7 +16,8 @@ object paisAdapter {
                 bloques,
                 lenguajes,
                 country.capital,
-                limitrofes
+                // ojo que los limites son abreviaturas no los nombre enteros
+                country.borders
         )
         return adaptado
     }
@@ -28,7 +28,5 @@ object paisAdapter {
     fun lenguajesAString(unCountry: Country) =
             unCountry.languages.map {it.toString()}
 
-    fun limitrofesAString(unCountry: Country) =
-            unCountry.borders.map {it.toString()}
 }
 

@@ -3,6 +3,7 @@ package ar.edu.unahur.obj2.impostoresPaises
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
 import io.mockk.every
@@ -11,31 +12,20 @@ import io.mockk.mockk
 class ObservatorioTest : DescribeSpec({
 
     val api = mockk<RestCountriesAPI>()
-/*
-    val argentina = paisAdapter.convertirAPais(api.paisConCodigo("ARG"))
-    val chile = paisAdapter.convertirAPais(api.paisConCodigo("CHI"))
-    val mexico = paisAdapter.convertirAPais(api.paisConCodigo("MEX"))
-    val eeuu = paisAdapter.convertirAPais(api.paisConCodigo("EEUU"))
-    val brasil = paisAdapter.convertirAPais(api.paisConCodigo("BRA"))
-    val potugal = paisAdapter.convertirAPais(api.paisConCodigo("POR"))
-*/
-    describe("Requerimiento :1 - indicar si los dos paises son limitrofes"){
 
-        val espaniol = Language("Espaniol")
-        val alca = RegionalBloc("A","ALCA")
-        val mercosur = RegionalBloc("M","MERCOSUR")
+    describe("Requerimiento :1 - Paises son limitrofes"){
+        it("Los paises son limitrofes"){
 
-        it("los paises son limitrofes"){
-
-
+            Observatorio.buscarPais("Argentina").paisesLimitrofes.shouldContain("CHL")
             //Observatorio.sonLimitrofes("Argentina","Chile")?.shouldBeTrue()
         }
-        it("los paises no son limitrofes"){
-            every { api.buscarPaisesPorNombre("Chile") } returns emptyList()
+        it("Los paises NO son limitrofes"){
+            //every { api.buscarPaisesPorNombre("Chile") } returns emptyList()
 
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
         }
     }
+/*
     describe("Requrimiento 2 : indica si los paises necesitan traduccion"){
 
         it("los paises no nesecitan traduccion, tienen algun idioma oficial igual"){
@@ -66,4 +56,6 @@ class ObservatorioTest : DescribeSpec({
             Observatorio.continenConMasPobla().shouldBe("America")
         }
     }
+
+ */
 })

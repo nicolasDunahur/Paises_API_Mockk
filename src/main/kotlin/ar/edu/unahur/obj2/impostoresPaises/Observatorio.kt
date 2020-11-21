@@ -6,15 +6,14 @@ object Observatorio {
 
     fun sonLimitrofes(unPais: String, otro: String): Boolean {
         val unPais = buscarPais(unPais)
-        val elOtro = buscarPais(otro)
-        return unPais.esLimitrofeDe(elOtro)
+        val elOtroConCodigo = buscarPais(otro)
+        return unPais.esLimitrofeDe(elOtroConCodigo)
     }
 
     fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre("Argentina")
-        return paisAdapter.convertirAPais(country.first())
+        return adaptador.convertirAPais(country.first())
     }
-
 
     fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
         val unPais = buscarPais(pais1)
@@ -38,6 +37,5 @@ object Observatorio {
 
     // 5
     fun continenConMasPobla() = paises.maxBy { it.poblacion }!!.continente
-
 
 }
