@@ -1,5 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+package ar.edu.unahur.obj2.impostoresPaises
+
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
@@ -8,12 +10,7 @@ import io.mockk.mockk
 
 class ObservatorioTest : DescribeSpec({
 
-/*
-    argentina.agregarPaisesLimitrofes(chile)
-    chile.agregarPaisesLimitrofes(argentina)
-    mexico.agregarPaisesLimitrofes(eeuu)
-    brasil.agregarPaisesLimitrofes(argentina)
- */
+    val api = mockk<RestCountriesAPI>()
 
     val argentina = Pais(api.paisConCodigo("ARG"))
     val chile = Pais(api.paisConCodigo("CHL"))
@@ -21,14 +18,7 @@ class ObservatorioTest : DescribeSpec({
     val eeuu = Pais(api.paisConCodigo("EEUU"))
     val brasil = Pais(api.paisConCodigo( "BRA"))
     val potugal = Pais(api.paisConCodigo( "POR"))
-/*
-    Observatorio.agregarPais(argentina)
-    Observatorio.agregarPais(chile)
-    Observatorio.agregarPais(mexico)
-    Observatorio.agregarPais(eeuu)
-    Observatorio.agregarPais(brasil)
-    Observatorio.agregarPais(potugal)
-*/
+
     describe("Requerimiento :1 - indicar si los dos paises son limitrofes"){
 
         val espaniol = Language("Espaniol")
@@ -46,16 +36,16 @@ class ObservatorioTest : DescribeSpec({
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
         }
     }
-        describe("Requrimiento 2 : indica si los paises necesitan traduccion"){
+    describe("Requrimiento 2 : indica si los paises necesitan traduccion"){
 
         it("los paises no nesecitan traduccion, tienen algun idioma oficial igual"){
 
 
-         Observatorio.necesitanTraduccion("Argentina","Mexico").shouldBeFalse()
+            Observatorio.necesitanTraduccion("Argentina","Mexico").shouldBeFalse()
         }
 
         it( "los paises necesitan tradiccion, no comparten idioma oficial"){
-           Observatorio.necesitanTraduccion("Chile","EEUU").shouldBeTrue()
+            Observatorio.necesitanTraduccion("Chile","EEUU").shouldBeTrue()
         }
     }
     describe("Requerimiento 3: conocer si son potenciales aliados"){
@@ -63,7 +53,7 @@ class ObservatorioTest : DescribeSpec({
             Observatorio.sonPotencialesAliados("Argentina","Mexico").shouldBeFalse()
         }
         it("los paises comparte un bloque regional, puede ser potenciales aliados"){
-           Observatorio.sonPotencialesAliados("Argentina","Chile").shouldBeTrue()
+            Observatorio.sonPotencialesAliados("Argentina","Chile").shouldBeTrue()
         }
     }
     describe("Requerimiento 4: Obtener los nombres de los 5 países con mayor población"){
@@ -73,7 +63,7 @@ class ObservatorioTest : DescribeSpec({
     }
     describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
         it ("El continente mas poblado es America"){
-           Observatorio.continenConMasPobla().shouldBe("America")
+            Observatorio.continenConMasPobla().shouldBe("America")
         }
     }
 })

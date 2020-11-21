@@ -6,14 +6,15 @@ open class Pais(
         val poblacion: Long,
         val continente: String,
         val bloqueRegional: List<String>,
-        val idomasOficiales: List<String>
-
+        val idomasOficiales: List<String>,
+        val capital: String,
+        val paisesLimitrofes: List<String>
 
 ){
 
-    var paisesLimitrofes =  mutableListOf<Pais>()
+    //var paisesLimitrofes =  mutableListOf<Pais>()
 
-    fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais)
+    //fun agregarPaisesLimitrofes(pais: Pais) = paisesLimitrofes.add(pais)
 
     fun esLimitrofeDe(paisLimitrofe: Pais) =
             paisesLimitrofes.contains(paisLimitrofe)
