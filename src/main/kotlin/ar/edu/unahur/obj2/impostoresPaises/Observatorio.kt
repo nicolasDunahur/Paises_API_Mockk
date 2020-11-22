@@ -10,8 +10,8 @@ object Observatorio {
     }
 
     // 1
-    fun sonLimitrofes(unPais: String, otro: String): Boolean {
-        val unPais = buscarPais(unPais)
+    fun sonLimitrofes(pais: String, otro: String): Boolean {
+        val unPais = buscarPais(pais)
         val otroPais = buscarPais(otro)
         return unPais.esLimitrofeDe(otroPais)
     }
@@ -41,6 +41,6 @@ object Observatorio {
             ordenadosYConNombres().filterIndexed  { index, s -> (index != 5) }
 
     // 5
-    fun continenConMasPobla() = ordenarlosPorPoblacion().maxByOrNull { it.poblacion }!!.continente
+    //fun continenConMasPobla() = ordenarlosPorPoblacion().maxByOrNull { it.poblacion }!!.continente
 
 }
