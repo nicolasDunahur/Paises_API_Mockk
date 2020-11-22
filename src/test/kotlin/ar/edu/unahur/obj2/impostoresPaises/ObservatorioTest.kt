@@ -17,7 +17,7 @@ class ObservatorioTest : DescribeSpec({
         it("Los paises son limitrofes"){
 
             Observatorio.buscarPais("Argentina").paisesLimitrofes.shouldContain("CHL")
-            //Observatorio.sonLimitrofes("Argentina","Chile")?.shouldBeTrue()
+            Observatorio.sonLimitrofes("Argentina","Chile")?.shouldBeTrue()
         }
         it("Los paises NO son limitrofes"){
             //every { api.buscarPaisesPorNombre("Chile") } returns emptyList()
@@ -25,19 +25,21 @@ class ObservatorioTest : DescribeSpec({
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
         }
     }
-/*
-    describe("Requrimiento 2 : indica si los paises necesitan traduccion"){
 
-        it("los paises no nesecitan traduccion, tienen algun idioma oficial igual"){
+    describe("Requrimiento 2 : indica si los paises necesitan traduccion"){
+        it("Los paises NO nesecitan traduccion, tienen algun idioma oficial igual"){
 
 
             Observatorio.necesitanTraduccion("Argentina","Mexico").shouldBeFalse()
         }
 
-        it( "los paises necesitan tradiccion, no comparten idioma oficial"){
-            Observatorio.necesitanTraduccion("Chile","EEUU").shouldBeTrue()
+        it( "Los paises SI necesitan traduccion, No comparten idioma oficial"){
+
+
+            Observatorio.necesitanTraduccion("Chile","United States of America").shouldBeTrue()
         }
     }
+/*
     describe("Requerimiento 3: conocer si son potenciales aliados"){
         it ("los paises no son aliados, no comparte el mismo bloque"){
             Observatorio.sonPotencialesAliados("Argentina","Mexico").shouldBeFalse()

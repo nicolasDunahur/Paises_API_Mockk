@@ -26,7 +26,7 @@ object adaptador {
             unCountry.regionalBlocs.map {it.toString()}
 
     fun lenguajesAString(unCountry: Country) =
-            unCountry.languages.map {it.toString()}
+            unCountry.languages.map {it.name}
 
 }
 

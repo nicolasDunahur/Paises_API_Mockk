@@ -5,8 +5,12 @@ import ar.edu.unahur.obj2.impostoresPaises.adaptador
 
 
 val pais = Observatorio.buscarPais("Argentina")
-Observatorio.buscarPais("Argentina").paisesLimitrofes
+//Observatorio.buscarPais("EEUU").paisesLimitrofes
 
 val argentina = adaptador.convertirAPais(api.paisConCodigo("ARG"))
+val eeuu = adaptador.convertirAPais(api.paisConCodigo("USA"))
 val chile = adaptador.convertirAPais(api.paisConCodigo("CHL"))
-argentina.paisesLimitrofes
+chile.nombre
+eeuu.nombre
+argentina.nombre
+
