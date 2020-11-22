@@ -13,7 +13,7 @@ open class Pais(
 
     fun esLimitrofeDe(paisLimitrofe: Pais) =  paisesLimitrofes.contains(paisLimitrofe.codigoISo3)
 
-    fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
-
     fun necesitaTraduccionPara(otroPais: Pais) = idomasOficiales.intersect(otroPais.idomasOficiales).isEmpty()
+
+    fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
 }

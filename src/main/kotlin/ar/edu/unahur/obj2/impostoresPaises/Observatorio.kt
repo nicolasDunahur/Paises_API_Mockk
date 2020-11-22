@@ -38,8 +38,6 @@ object Observatorio {
     fun paisesConMayorPoblacion() =
             ordenadosYConNombres().filterIndexed  { index, s -> (index != 5) }
 
-
-
     // 5
     fun continenConMasPobla() = paises.maxBy { it.poblacion }!!.continente
 
