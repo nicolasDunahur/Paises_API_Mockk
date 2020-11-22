@@ -2,7 +2,7 @@ package ar.edu.unahur.obj2.impostoresPaises
 
 object Observatorio {
     var api = RestCountriesAPI()
-    var paises = mutableListOf<Pais>()
+    var paises = api.todosLosPaises().map { adaptador.convertirAPais(it) }
 
     fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre(nombre)
@@ -23,19 +23,22 @@ object Observatorio {
         return unPais.necesitaTraduccionPara(otroPais)
     }
 
+    // 3
     fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
         val unPais = buscarPais(pais1)
         val otroPais = buscarPais(pais2)
         return unPais.comparteBloqueCon(otroPais) && !unPais.necesitaTraduccionPara(otroPais)
     }
 
-    //4
-    //  se deben ordenar los paises para
-    fun ordenarlosPorPoblacion() { paises.sortByDescending { it.poblacion } }
+    // 4
+    fun ordenarlosPorPoblacion() = paises.sortedByDescending { it.poblacion }
 
-    fun paisesOrdenadosPorNombre() = paises.map { it.nombre }
+    fun ordenadosYConNombres() = ordenarlosPorPoblacion().map { it.nombre }
 
-    fun paisesConMayorPoblacion() = paisesOrdenadosPorNombre().filterIndexed { index, s -> (index != 5)}
+    fun paisesConMayorPoblacion() =
+            ordenadosYConNombres().filterIndexed  { index, s -> (index != 5) }
+
+
 
     // 5
     fun continenConMasPobla() = paises.maxBy { it.poblacion }!!.continente

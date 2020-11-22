@@ -10,7 +10,7 @@ open class Pais(
         val capital: String,
         val paisesLimitrofes: List<String>
         ){
-    // no busca el string
+
     fun esLimitrofeDe(paisLimitrofe: Pais) =  paisesLimitrofes.contains(paisLimitrofe.codigoISo3)
 
     fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()

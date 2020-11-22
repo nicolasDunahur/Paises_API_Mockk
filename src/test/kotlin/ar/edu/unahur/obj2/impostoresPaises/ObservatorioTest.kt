@@ -39,25 +39,36 @@ class ObservatorioTest : DescribeSpec({
             Observatorio.necesitanTraduccion("Chile","United States of America").shouldBeTrue()
         }
     }
-/*
+
     describe("Requerimiento 3: conocer si son potenciales aliados"){
-        it ("los paises no son aliados, no comparte el mismo bloque"){
+        it ("Los paises NO son aliados, no comparte el mismo bloque pero si el mismo idioma"){
             Observatorio.sonPotencialesAliados("Argentina","Mexico").shouldBeFalse()
         }
-        it("los paises comparte un bloque regional, puede ser potenciales aliados"){
+        it("SI pueden ser potenciales aliados, los paises comparte un bloque regional e idioma. "){
             Observatorio.sonPotencialesAliados("Argentina","Chile").shouldBeTrue()
         }
     }
-    describe("Requerimiento 4: Obtener los nombres de los 5 países con mayor población"){
-        it ("los paises no son aliados, no comparte el mismo bloque"){
-            Observatorio.paisesConMayorPoblacion().shouldContainAll("Brasil", "EEUU", "Mexico", "Argentina", "Chile")
-        }
-    }
-    describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
-        it ("El continente mas poblado es America"){
-            Observatorio.continenConMasPobla().shouldBe("America")
+
+    describe("Requerimiento 4: Paises mas poblados"){
+        it ("Los paises mas poblados son: China, India, United States of America, Indonesia, Brazil"){
+           Observatorio.paisesConMayorPoblacion().shouldContainAll("China", "India", "United States of America", "Indonesia", "Brazil")
         }
     }
 
- */
+    describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
+        it ("El continente mas poblado es Asia"){
+            Observatorio.continenConMasPobla().shouldBe("Asia")
+        }
+    }
 })
+
+/*
+
+Cuando se traigan a un país, pueden llegar a tener un problema de recursividad infinita al traer los países limítrofes.
+ Una forma (no la única) de solucionarlo es no traer los "limítrofes de segundo nivel". Por ejemplo: si pidieron a Chile
+ les vienen Argentina, Bolivia y Perú como limítrofes... si intentan traerlos de la misma forma que trajeron a Chile se
+  vuelve infinito. Si, en cambio, a esos países limítrofes no les buscan sus limítrofes se corta la recursividad.
+
+(1) En realidad es Asia, pero como yo puse al atributo population  lo puse como Int, la cuenta desborda y queda negativo.
+Si cambian Int por Long les va a dar Asia.
+ */
