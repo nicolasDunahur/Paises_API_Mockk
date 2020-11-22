@@ -4,7 +4,8 @@ import ar.edu.unahur.obj2.impostoresPaises.RestCountriesAPI
 import ar.edu.unahur.obj2.impostoresPaises.adaptador
 
 
+api.paisConCodigo("BRA")
 
 
-Observatorio.paisesConMayorPoblacion()
+
 

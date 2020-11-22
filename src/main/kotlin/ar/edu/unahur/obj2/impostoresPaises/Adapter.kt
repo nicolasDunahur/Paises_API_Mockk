@@ -16,7 +16,6 @@ object adaptador {
                 bloques,
                 lenguajes,
                 country.capital,
-                // ojo que los limites son abreviaturas no los nombre enteros
                 country.borders
         )
         return adaptado

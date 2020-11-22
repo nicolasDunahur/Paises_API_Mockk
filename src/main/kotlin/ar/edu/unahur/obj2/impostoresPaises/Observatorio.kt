@@ -12,8 +12,8 @@ object Observatorio {
     // 1
     fun sonLimitrofes(unPais: String, otro: String): Boolean {
         val unPais = buscarPais(unPais)
-        val elOtroConCodigo = buscarPais(otro)
-        return unPais.esLimitrofeDe(elOtroConCodigo)
+        val otroPais = buscarPais(otro)
+        return unPais.esLimitrofeDe(otroPais)
     }
 
     // 2
