@@ -13,6 +13,7 @@ import io.mockk.mockk
 class ObservatorioTest : DescribeSpec({
 
     val api = mockk<RestCountriesAPI>()
+    //Observatorio.api = api
 
     describe("Requerimiento :1 - Paises son limitrofes"){
 

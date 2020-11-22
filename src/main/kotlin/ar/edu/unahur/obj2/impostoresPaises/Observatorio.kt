@@ -1,8 +1,8 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 object Observatorio {
+
     var api = RestCountriesAPI()
-    var paises = api.todosLosPaises().map { adaptador.convertirAPais(it) }
 
     fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre(nombre)
@@ -30,8 +30,10 @@ object Observatorio {
         return unPais.comparteBloqueCon(otroPais) && !unPais.necesitaTraduccionPara(otroPais)
     }
 
+    // ver que no hay que meter los paises en el observatorio
+
     // 4
-    fun ordenarlosPorPoblacion() = paises.sortedByDescending { it.poblacion }
+    fun ordenarlosPorPoblacion() = api.todosLosPaises().map { adaptador.convertirAPais(it) }.sortedByDescending { it.poblacion }
 
     fun ordenadosYConNombres() = ordenarlosPorPoblacion().map { it.nombre }
 
@@ -39,6 +41,6 @@ object Observatorio {
             ordenadosYConNombres().filterIndexed  { index, s -> (index != 5) }
 
     // 5
-    fun continenConMasPobla() = paises.maxBy { it.poblacion }!!.continente
+    fun continenConMasPobla() = ordenarlosPorPoblacion().maxByOrNull { it.poblacion }!!.continente
 
 }
