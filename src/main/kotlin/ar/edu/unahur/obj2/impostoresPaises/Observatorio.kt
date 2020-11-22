@@ -41,6 +41,10 @@ object Observatorio {
             ordenadosYConNombres().filterIndexed  { index, s -> (index != 5) }
 
     // 5
-    //fun continenConMasPobla() = ordenarlosPorPoblacion().maxByOrNull { it.poblacion }!!.continente
-
+    fun continenteConMasPoblacion() =
+            api.todosLosPaises()
+                    .map{ adaptador.convertirAPais(it)}
+                    .groupBy { it.continente }
+                    .map{ it.value.sumBy { region ->region.poblacion.toInt() }}
+                    .first()
 }

@@ -5,7 +5,7 @@ import ar.edu.unahur.obj2.impostoresPaises.adaptador
 
 val app = RestCountriesAPI()
 
-app.buscarPaisesPorNombre("Russia")
-Observatorio.paisesConMayorPoblacion()
-
-
+app.todosLosPaises()
+        .groupBy { it.region }
+        .map { it.value.sumBy{ continente -> continente.population.toInt() }}
+        .first()
