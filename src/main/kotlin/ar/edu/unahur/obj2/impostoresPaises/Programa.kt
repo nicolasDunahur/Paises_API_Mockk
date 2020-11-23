@@ -15,20 +15,40 @@ object Programa {
   var api = RestCountriesAPI()
 
   fun iniciar() {
+
     entradaSalida.escribirLinea("Hola, poné el nombre de un país y te mostramos algo de data")
     val pais = entradaSalida.leerLinea()
-
     checkNotNull(pais) { "Sin nombre no puedo hacer nada :(" }
-
     val paisesEncontrados = api.buscarPaisesPorNombre(pais)
-
     check(paisesEncontrados.isNotEmpty())
       { "No encontramos nada, fijate si lo escribiste bien" }
-
     paisesEncontrados.forEach {
       entradaSalida.escribirLinea(
         "${it.name} (${it.alpha3Code}) es un país de ${it.region}, con una población de ${it.population} habitantes."
       )
     }
+    // comparacion
+    entradaSalida.escribirLinea("Hola, poné el nombre de un país y te mostramos algo de data")
+    val otroPais = entradaSalida.leerLinea()
+    checkNotNull(pais) { "Sin nombre no puedo hacer nada :(" }
+    val paiseAComparar = otroPais?.let { api.buscarPaisesPorNombre(it) }
+    if (paiseAComparar != null) {
+      check(paiseAComparar.isNotEmpty())
+      { "No encontramos nada, fijate si lo escribiste bien" }
+    }
+
+
+
+
+
   }
+
+
+
+
+
+
+
+
+
 }
