@@ -4,3 +4,4 @@ import ar.edu.unahur.obj2.impostoresPaises.adaptador
 
 
 val app = RestCountriesAPI()
+app.buscarPaisesPorNombre("Brasil")

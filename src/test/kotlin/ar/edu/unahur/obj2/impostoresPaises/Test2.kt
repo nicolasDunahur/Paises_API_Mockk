@@ -19,7 +19,8 @@ class ObservatorioTest : DescribeSpec({
 
     val espaniol = Language("espaniol")
     val ingles = Language("ingles")
-    val MERCOSUR = RegionalBloc("ALCA","alca")
+    val MERCOSUR = RegionalBloc("MERCOSUR","MERCOSUER")
+    val ALCA = RegionalBloc("ALCA","ALCA")
 
     every { api.buscarPaisesPorNombre("Chile") } returns listOf(Country(
             "Chile",
@@ -68,7 +69,7 @@ class ObservatorioTest : DescribeSpec({
 
     describe("Requerimiento :1 - Paises son limitrofes"){
         it("Los paises son limitrofes"){
-            Observatorio.sonLimitrofes("Argentina","Chile")?.shouldBeTrue()
+            Observatorio.sonLimitrofes("Argentina","Chile").shouldBeTrue()
         }
         it("Los paises NO son limitrofes"){
             Observatorio.sonLimitrofes("Mexico","Argentina").shouldBeFalse()
@@ -96,11 +97,50 @@ class ObservatorioTest : DescribeSpec({
     describe("Requerimiento 4: Paises mas poblados"){
         it ("Los paises mas poblados son: China, India, United States of America, Indonesia, Brazil"){
             every { api.todosLosPaises() } returns listOf(
-                Country("United States of America", "USA", "C", "America", 3, mutableListOf("BRA"), mutableListOf(ingles), mutableListOf()),
-                Country("Brazil", "", "", "", 1, mutableListOf("BRA"), mutableListOf(), mutableListOf()),
-                Country("China", "", "", "", 5, mutableListOf("BRA"), mutableListOf(), mutableListOf()),
-                Country("India", "", "", "", 4, mutableListOf("BRA"), mutableListOf(), mutableListOf()),
-                Country("Indonesia", "", "", "", 2, mutableListOf("BRA"), mutableListOf(), mutableListOf())
+                Country(
+                        "United States of America",
+                        "USA",
+                        "Washington",
+                        "America",
+                        32394700,
+                        mutableListOf("CAN","MEX"),
+                        mutableListOf(ingles),
+                        mutableListOf()),
+                Country(
+                        "Brazil",
+                        "BRA",
+                        "Brasilia",
+                        "America",
+                        206135863,
+                        mutableListOf("ARG","URU"),
+                        mutableListOf(espaniol),
+                        mutableListOf(MERCOSUR)),
+                Country(
+                        "China",
+                        "",
+                        "",
+                        "",
+                        5,
+                        mutableListOf("BRA"),
+                        mutableListOf(),
+                        mutableListOf()),
+                Country(
+                        "India",
+                        "",
+                        "", "",
+                        4,
+                        mutableListOf("BRA"),
+                        mutableListOf(),
+                        mutableListOf()),
+                Country(
+                        "Indonesia",
+                        "",
+                        "",
+                        "",
+                        2,
+                        mutableListOf("BRA"),
+                        mutableListOf(),
+                        mutableListOf())
             )
             Observatorio.paisesConMayorPoblacion().shouldContainAll("China", "India", "United States of America", "Indonesia", "Brazil")
         }
