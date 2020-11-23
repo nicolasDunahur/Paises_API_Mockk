@@ -4,6 +4,7 @@ object Observatorio {
 
     var api = RestCountriesAPI()
 
+
     fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre(nombre)
         return adaptador.convertirAPais(country.first())
@@ -30,8 +31,6 @@ object Observatorio {
         return unPais.comparteBloqueCon(otroPais) && !unPais.necesitaTraduccionPara(otroPais)
     }
 
-    // ver que no hay que meter los paises en el observatorio
-
     // 4
     fun ordenarlosPorPoblacion() = api.todosLosPaises().map { adaptador.convertirAPais(it) }.sortedByDescending { it.poblacion }
 
@@ -48,4 +47,5 @@ object Observatorio {
                     .mapValues { it.value.sumBy { it.poblacion.toInt() } }
                     .keys
                     .first()
+
 }

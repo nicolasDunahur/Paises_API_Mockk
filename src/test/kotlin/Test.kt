@@ -27,7 +27,7 @@ class Test : DescribeSpec({
             Observatorio.sonLimitrofes("Mexico","Chile").shouldBeFalse()
         }
     }
-
+/*
     describe("Requerimiento 2 : saber si los paises necesitan traduccion"){
 
         every { api.necesitanTraduccion("Argentina","Bolivia") } returns false
@@ -74,5 +74,5 @@ class Test : DescribeSpec({
         api.continenteConMasPoblacion().shouldBe("Asia")
         Observatorio.continenteConMasPoblacion().shouldBe("Asia")
     }
-
+*/
 })
