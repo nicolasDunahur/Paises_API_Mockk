@@ -45,6 +45,7 @@ object Observatorio {
             api.todosLosPaises()
                     .map{ adaptador.convertirAPais(it)}
                     .groupBy { it.continente }
-                    .map{ it.value.sumBy { region ->region.poblacion.toInt() }}
+                    .mapValues { it.value.sumBy { it.poblacion.toInt() } }
+                    .keys
                     .first()
 }

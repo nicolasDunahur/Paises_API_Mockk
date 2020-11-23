@@ -3,6 +3,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.collections.shouldContainInOrder
+import io.kotest.matchers.shouldBe
 
 import io.mockk.every
 import io.mockk.mockk
@@ -65,6 +66,13 @@ class Test : DescribeSpec({
 
             api.paisesConMayorPoblacion().shouldContainInOrder("China","India","United States of America", "Indonesia", "Brazil")
         }
+    }
+
+    describe("Requerimiento 5 : obtener el contienente con mayor poblacion"){
+        every { api.continenteConMasPoblacion() } returns "Asia"
+
+        api.continenteConMasPoblacion().shouldBe("Asia")
+        Observatorio.continenteConMasPoblacion().shouldBe("Asia")
     }
 
 })
