@@ -95,18 +95,22 @@ class ObservatorioTest : DescribeSpec({
 
     describe("Requerimiento 4: Paises mas poblados"){
         it ("Los paises mas poblados son: China, India, United States of America, Indonesia, Brazil"){
-            //every { api.todosLosPaises() } returns listOf(mockk())
-
+            every { api.todosLosPaises() } returns listOf(
+                Country("United States of America", "USA", "C", "America", 3, mutableListOf("BRA"), mutableListOf(ingles), mutableListOf()),
+                Country("Brazil", "", "", "", 1, mutableListOf("BRA"), mutableListOf(), mutableListOf()),
+                Country("China", "", "", "", 5, mutableListOf("BRA"), mutableListOf(), mutableListOf()),
+                Country("India", "", "", "", 4, mutableListOf("BRA"), mutableListOf(), mutableListOf()),
+                Country("Indonesia", "", "", "", 2, mutableListOf("BRA"), mutableListOf(), mutableListOf())
+            )
             Observatorio.paisesConMayorPoblacion().shouldContainAll("China", "India", "United States of America", "Indonesia", "Brazil")
         }
     }
-/*
+
     describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
         it ("El continente mas poblado es Asia"){
-            //every { api.todosLosPaises() } returns listOf(mockk())
-            Observatorio.continenConMasPobla().shouldBe("Asia")
+            every { api.todosLosPaises() } returns listOf(Country("China", "", "", "Asia", 5, mutableListOf("CHI"), mutableListOf(), mutableListOf()),
+            )
+            Observatorio.continenteConMasPoblacion().shouldBe("Asia")
         }
     }
-    */
-
 })
