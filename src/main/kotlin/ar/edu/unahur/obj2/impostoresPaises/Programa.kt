@@ -22,7 +22,6 @@ object Programa {
 
     memu(opcion)
 
-
   }
 
   fun memu(opcion: Int) {
@@ -32,11 +31,21 @@ object Programa {
     val pais2 = entradaSalida.leerLinea()
 
     when (opcion) {
-        1 -> comparSiSonLimitrofes(pais,pais2)
-        2 -> saberSiNecesitanTraduccion(pais,pais2)
-        else -> entradaSalida.escribirLinea("no hay mas opciones")
+
+      1 -> comparSiSonLimitrofes(pais,pais2)
+      2 -> saberSiNecesitanTraduccion(pais,pais2)
+      3-> sonAlidados(pais,pais)
+      4-> perteneceAlBloque(pais)
+      else -> entradaSalida.escribirLinea("no hay mas opciones")
+
+
     }
 
+  }
+
+  fun perteneceAlBloque(pais: String) {
+    Observatorio.buscarPais(pais).bloqueRegional
+    entradaSalida.escribirLinea("el ${pais} pertenece al bloque ${Observatorio.buscarPais(pais).bloqueRegional}")
   }
 
   fun comparSiSonLimitrofes(pais:String, pais2:String) =
@@ -46,6 +55,9 @@ object Programa {
   fun saberSiNecesitanTraduccion(pais: String, pais2: String) =
           if (Observatorio.necesitanTraduccion(pais,pais2)) entradaSalida.escribirLinea("${pais}, ${pais2} necesitan taduccion")
           else entradaSalida.escribirLinea("${pais}, ${pais2} no nesecitan traduccion")
+  fun sonAlidados( pais: String,pais2: String) =
+          if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("S{pais}, ${pais2} son aliados")
+          else entradaSalida.escribirLinea("${pais},${pais2} no son aliados")
 
 
 }
