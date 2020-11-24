@@ -1,6 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 import ar.edu.unahur.obj2.impostoresPaises.Programa.entradaSalida
+import ar.edu.unahur.obj2.impostoresPaises.adaptador.api
 
 
 // Acá encapsulamos el manejo de la consola real, desacoplandolo del programa en sí
@@ -27,9 +28,9 @@ object Programa {
             "6) El continente mas poblado. \n")
 
     val opcion = entradaSalida.leerLinea().toInt()
+    check(opcion < 7) {"Debe ingresar un numero entre 1 y 6"}
 
     memu(opcion)
-
   }
 
   fun memu(opcion: Int) {
@@ -44,14 +45,23 @@ object Programa {
       else -> entradaSalida.escribirLinea("Programa terminado.")
     }
   }
+  fun chekeoDePais(unPais:String){
+    checkNotNull(unPais) { "Sin nombre no puedo hacer nada :(" }
 
+    val paisesEncontrados = api.buscarPaisesPorNombre(unPais)
+
+    check(paisesEncontrados.isNotEmpty())
+    { "No encontramos nada, fijate si lo escribiste bien" }
+  }
   // 1
   fun limitrofes() {
     entradaSalida.escribirLinea("Escribe un pais")
     var pais = entradaSalida.leerLinea()
+    chekeoDePais(pais)
 
     entradaSalida.escribirLinea("Escribe otro pais")
     var pais2 = entradaSalida.leerLinea()
+    chekeoDePais(pais2)
 
     if (Observatorio.sonLimitrofes(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son limitrofes.")
     else entradaSalida.escribirLinea("Los paises ${pais},${pais2} no limitan.")
@@ -90,7 +100,6 @@ object Programa {
   private fun continenteMasPoblado() {
     entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenteConMasPoblacion()} .")
   }
-
 }
 
 
