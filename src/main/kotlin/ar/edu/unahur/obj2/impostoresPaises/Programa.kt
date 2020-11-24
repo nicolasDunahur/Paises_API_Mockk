@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+import ar.edu.unahur.obj2.impostoresPaises.Programa.entradaSalida
 
 
 // Acá encapsulamos el manejo de la consola real, desacoplandolo del programa en sí
@@ -8,11 +9,6 @@ object Consola {
   fun escribirLinea(contenido: String) {
     println(contenido)
   }
-}
-
-// El código de nuestro programa, que (eventualmente) interactuará con una persona real
-object IngresarPaises {
-
 }
 
 object Programa {
@@ -38,73 +34,62 @@ object Programa {
 
   fun memu(opcion: Int) {
 
-
     when (opcion) {
 
-      1 -> comparSiSonLimitrofes()
-      //2 -> saberSiNecesitanTraduccion()
-      //3-> sonAlidados()
-      //4-> perteneceAlBloque(pais)
-      5-> cincoPaisesConMayorPoblacion()
-      6-> continenteMasPoblado()
-      else -> entradaSalida.escribirLinea("no hay mas opciones")
-
-
+      1 -> limitrofes()
+      2 -> traduccion()
+      3 -> aliados()
+      4 -> cincoPaisesConMayorPoblacion()
+      5 -> continenteMasPoblado()
+      else -> entradaSalida.escribirLinea("Programa terminado.")
     }
-
   }
-
-  fun siSiEsTrue(unaFuncion:Boolean) {
-    if (unaFuncion) "Si"
-    else "No"
-  }
-
 
   // 1
-  fun comparSiSonLimitrofes(): Boolean {
+  fun limitrofes() {
     entradaSalida.escribirLinea("Escribe un pais")
-    val pais = entradaSalida.leerLinea()
+    var pais = entradaSalida.leerLinea()
 
     entradaSalida.escribirLinea("Escribe otro pais")
-    val pais2 = entradaSalida.leerLinea()
+    var pais2 = entradaSalida.leerLinea()
 
-    return Observatorio.sonLimitrofes(pais,pais2)
-
+    if (Observatorio.sonLimitrofes(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son limitrofes.")
+    else entradaSalida.escribirLinea("Los paises ${pais},${pais2} no limitan.")
   }
-
-
 
   // 2
-  fun saberSiNecesitanTraduccion(pais: String, pais2: String) =
-          if (Observatorio.necesitanTraduccion(pais,pais2)) entradaSalida.escribirLinea("${pais}, ${pais2} necesitan taduccion")
-          else entradaSalida.escribirLinea("${pais}, ${pais2} no nesecitan traduccion")
+  fun traduccion() {
+    entradaSalida.escribirLinea("Escribe un pais:")
+    var pais = entradaSalida.leerLinea()
+
+    entradaSalida.escribirLinea("Escribe otro pais:")
+    var pais2 = entradaSalida.leerLinea()
+
+    if (Observatorio.necesitanTraduccion(pais, pais2)) entradaSalida.escribirLinea("${pais}, ${pais2} necesitan traduccion.")
+    else entradaSalida.escribirLinea("${pais}, ${pais2} no nesecitan traduccion.")
+  }
 
   // 3
-  fun sonAlidados( pais: String,pais2: String) =
-          if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("S{pais}, ${pais2} son aliados")
-          else entradaSalida.escribirLinea("${pais},${pais2} no son aliados")
+  fun aliados() {
+    entradaSalida.escribirLinea("Escribe un pais:")
+    var pais = entradaSalida.leerLinea()
 
+    entradaSalida.escribirLinea("Escribe otro pais:")
+    var pais2 = entradaSalida.leerLinea()
+
+    if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("Los paises ${pais}, ${pais2} son aliados.")
+    else entradaSalida.escribirLinea("Los paises ${pais},${pais2} no son aliados")
+  }
+
+  // 4
+  private fun cincoPaisesConMayorPoblacion() {
+    entradaSalida.escribirLinea("Los paises con mayor poblacion son: ${Observatorio.paisesConMayorPoblacion()} .")
+  }
 
   // 5
-  private fun cincoPaisesConMayorPoblacion() {
-    entradaSalida.escribirLinea("Los paises con mayor poblacion son: ${Observatorio.paisesConMayorPoblacion()} ")
-  }
-
-  // 6
   private fun continenteMasPoblado() {
-    entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenteConMasPoblacion()} ")
+    entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenteConMasPoblacion()} .")
   }
-
-/*
-  fun perteneceAlBloque(pais: String) {
-    Observatorio.buscarPais(pais).bloqueRegional
-    entradaSalida.escribirLinea("el ${pais} pertenece al bloque ${Observatorio.buscarPais(pais).bloqueRegional}")
-  }
-  fun comparSiSonLimitrofes(pais:String, pais2:String) =
-          if (Observatorio.sonLimitrofes(pais,pais2)) entradaSalida.escribirLinea("los paises ${pais}, ${pais2} son limitrofes")
-          else entradaSalida.escribirLinea("los paises ${pais},${pais2} no limitan")
-*/
-
 
 }
 
