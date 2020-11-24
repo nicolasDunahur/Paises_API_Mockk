@@ -28,20 +28,29 @@ object Programa {
       )
     }
     // comparacion
-    entradaSalida.escribirLinea("Hola, poné el nombre de un país y te mostramos algo de data")
-    val otroPais = entradaSalida.leerLinea()
-    checkNotNull(pais) { "Sin nombre no puedo hacer nada :(" }
-    val paiseAComparar = otroPais?.let { api.buscarPaisesPorNombre(it) }
-    if (paiseAComparar != null) {
+    entradaSalida.escribirLinea("poné el nombre de otro país y lo comparamos")
+    val paiseAComparar = entradaSalida.leerLinea()!!
+    checkNotNull(paiseAComparar) { "Sin nombre no puedo hacer nada :(" }
+    val paisesEncontrado = api.buscarPaisesPorNombre(paiseAComparar)
       check(paiseAComparar.isNotEmpty())
       { "No encontramos nada, fijate si lo escribiste bien" }
-    }
 
+    /*
 
+    var limitrofes = Observatorio.sonLimitrofes(pais,paiseAComparar)
+    var traduccion = Observatorio.necesitanTraduccion(pais,paiseAComparar)
+    var aliados = Observatorio.sonPotencialesAliados(pais,paiseAComparar)
 
-
+    entradaSalida.escribirLinea(
+            "Comparacion entre $pais $paiseAComparar ." +
+                    " Son limitrofes: ${limitrofes}, " +
+                    " Necesitan traduccion: ${traduccion}," +
+                    " Pueden ser aliados: ${aliados} ."
+    )
+    */
 
   }
+
 
 
 
