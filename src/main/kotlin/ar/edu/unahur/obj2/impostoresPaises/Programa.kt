@@ -42,8 +42,8 @@ object Programa {
     when (opcion) {
 
       1 -> comparSiSonLimitrofes()
-      2 -> saberSiNecesitanTraduccion()
-      3-> sonAlidados()
+      //2 -> saberSiNecesitanTraduccion()
+      //3-> sonAlidados()
       //4-> perteneceAlBloque(pais)
       5-> cincoPaisesConMayorPoblacion()
       6-> continenteMasPoblado()
