@@ -32,12 +32,13 @@ object Observatorio {
     }
 
     // 4
+
     fun ordenarlosPorPoblacion() = api.todosLosPaises().map { adaptador.convertirAPais(it) }.sortedByDescending { it.poblacion }
 
     fun ordenadosYConNombres() = ordenarlosPorPoblacion().map { it.nombre }
 
     fun paisesConMayorPoblacion() =
-            ordenadosYConNombres().filterIndexed  { index, s -> (index != 5) }
+            ordenadosYConNombres().filterIndexed  { index, s -> (index < 5) }
 
     // 5
     fun continenteConMasPoblacion() =
