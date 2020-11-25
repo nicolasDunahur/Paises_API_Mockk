@@ -10,6 +10,20 @@ object Consola {
   }
 }
 
+object Chequeo {
+  var apichequeo = RestCountriesAPI()
+
+  fun chekeoDePais(unPais:String){
+
+    checkNotNull(unPais) { "Sin nombre no puedo hacer nada :(" }
+
+    val paisesEncontrados = apichequeo.buscarPaisesPorNombre(unPais)
+
+    check(paisesEncontrados.isNotEmpty())
+    { "No encontramos nada, fijate si lo escribiste bien, debe ser en ingles." }
+  }
+}
+
 object Programa {
 
   var entradaSalida = Consola
@@ -41,24 +55,17 @@ object Programa {
       else -> entradaSalida.escribirLinea("Programa terminado.")
     }
   }
-  fun chekeoDePais(unPais:String){
-    checkNotNull(unPais) { "Sin nombre no puedo hacer nada :(" }
 
-    val paisesEncontrados = api.buscarPaisesPorNombre(unPais)
-
-    check(paisesEncontrados.isNotEmpty())
-    { "No encontramos nada, fijate si lo escribiste bien" }
-  }
   // 1
 
   fun limitrofes() {
     entradaSalida.escribirLinea("Escribe un pais:")
     var pais = entradaSalida.leerLinea()
-    chekeoDePais(pais)
+    Chequeo.chekeoDePais(pais)
 
     entradaSalida.escribirLinea("Escribe otro pais:")
     var pais2 = entradaSalida.leerLinea()
-    chekeoDePais(pais2)
+    Chequeo.chekeoDePais(pais2)
 
     if (Observatorio.sonLimitrofes(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son limitrofes.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son limitrofes.")
@@ -68,9 +75,11 @@ object Programa {
   fun traduccion() {
     entradaSalida.escribirLinea("Escribe un pais:")
     var pais = entradaSalida.leerLinea()
+    Chequeo.chekeoDePais(pais)
 
     entradaSalida.escribirLinea("Escribe otro pais:")
     var pais2 = entradaSalida.leerLinea()
+    Chequeo.chekeoDePais(pais2)
 
     if (Observatorio.necesitanTraduccion(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} necesitan traduccion.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no nesecitan traduccion.")
@@ -80,9 +89,11 @@ object Programa {
   fun aliados() {
     entradaSalida.escribirLinea("Escribe un pais:")
     var pais = entradaSalida.leerLinea()
+    Chequeo.chekeoDePais(pais)
 
     entradaSalida.escribirLinea("Escribe otro pais:")
     var pais2 = entradaSalida.leerLinea()
+    Chequeo.chekeoDePais(pais2)
 
     if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son aliados.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son aliados")
