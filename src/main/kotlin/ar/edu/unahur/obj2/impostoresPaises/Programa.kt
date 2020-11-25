@@ -3,8 +3,6 @@ package ar.edu.unahur.obj2.impostoresPaises
 import ar.edu.unahur.obj2.impostoresPaises.Programa.entradaSalida
 import ar.edu.unahur.obj2.impostoresPaises.adaptador.api
 
-
-// Acá encapsulamos el manejo de la consola real, desacoplandolo del programa en sí
 object Consola {
   fun leerLinea() = readLine()!!
   fun escribirLinea(contenido: String) {
@@ -13,9 +11,8 @@ object Consola {
 }
 
 object Programa {
-  // Ambas son variables para poder cambiarlas en los tests
-  var entradaSalida = Consola
 
+  var entradaSalida = Consola
 
   fun iniciar() {
 
@@ -23,9 +20,8 @@ object Programa {
             "1) Ver si 2 paises limitan.  \n" +
             "2) Analizar si 2 paises necesitan traduccion.\n" +
             "3) Comparar si 2 paises puesen ser aliados. \n" +
-            "4) Si un pais pertenece a derminado bloque. \n" +
-            "5) Los 5 paises con mas poblacion. \n" +
-            "6) El continente mas poblado. \n")
+            "4) Los 5 paises con mas poblacion. \n" +
+            "5) El continente mas poblado. \n")
 
     val opcion = entradaSalida.leerLinea().toInt()
     check(opcion < 7) {"Debe ingresar un numero entre 1 y 6"}
@@ -54,17 +50,18 @@ object Programa {
     { "No encontramos nada, fijate si lo escribiste bien" }
   }
   // 1
+
   fun limitrofes() {
-    entradaSalida.escribirLinea("Escribe un pais")
+    entradaSalida.escribirLinea("Escribe un pais:")
     var pais = entradaSalida.leerLinea()
     chekeoDePais(pais)
 
-    entradaSalida.escribirLinea("Escribe otro pais")
+    entradaSalida.escribirLinea("Escribe otro pais:")
     var pais2 = entradaSalida.leerLinea()
     chekeoDePais(pais2)
 
     if (Observatorio.sonLimitrofes(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son limitrofes.")
-    else entradaSalida.escribirLinea("Los paises ${pais},${pais2} no limitan.")
+    else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son limitrofes.")
   }
 
   // 2
@@ -75,8 +72,8 @@ object Programa {
     entradaSalida.escribirLinea("Escribe otro pais:")
     var pais2 = entradaSalida.leerLinea()
 
-    if (Observatorio.necesitanTraduccion(pais, pais2)) entradaSalida.escribirLinea("${pais}, ${pais2} necesitan traduccion.")
-    else entradaSalida.escribirLinea("${pais}, ${pais2} no nesecitan traduccion.")
+    if (Observatorio.necesitanTraduccion(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} necesitan traduccion.")
+    else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no nesecitan traduccion.")
   }
 
   // 3
@@ -87,17 +84,17 @@ object Programa {
     entradaSalida.escribirLinea("Escribe otro pais:")
     var pais2 = entradaSalida.leerLinea()
 
-    if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("Los paises ${pais}, ${pais2} son aliados.")
-    else entradaSalida.escribirLinea("Los paises ${pais},${pais2} no son aliados")
+    if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son aliados.")
+    else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son aliados")
   }
 
   // 4
-  private fun cincoPaisesConMayorPoblacion() {
+  fun cincoPaisesConMayorPoblacion() {
     entradaSalida.escribirLinea("Los paises con mayor poblacion son: ${Observatorio.paisesConMayorPoblacion()} .")
   }
 
   // 5
-  private fun continenteMasPoblado() {
+  fun continenteMasPoblado() {
     entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenteConMasPoblacion()} .")
   }
 }
