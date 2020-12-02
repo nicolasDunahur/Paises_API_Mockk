@@ -1,7 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
 import ar.edu.unahur.obj2.impostoresPaises.Programa.entradaSalida
-import ar.edu.unahur.obj2.impostoresPaises.adaptador.api
+
 
 object Consola {
   fun leerLinea() = readLine()!!
@@ -10,7 +10,7 @@ object Consola {
   }
 }
 
-object Chequeo {
+object IngresoYChequeo {
   var apichequeo = RestCountriesAPI()
 
   fun chekeoDePais(unPais:String){
@@ -21,6 +21,20 @@ object Chequeo {
 
     check(paisesEncontrados.isNotEmpty())
     { "No encontramos nada, fijate si lo escribiste bien, debe ser en ingles." }
+  }
+
+  fun ingresarPaises(): MutableList<String> {
+
+    entradaSalida.escribirLinea("Escribi un pais:")
+    var pais = entradaSalida.leerLinea()
+    IngresoYChequeo.chekeoDePais(pais)
+
+    entradaSalida.escribirLinea("Escribi otro pais:")
+    var pais2 = entradaSalida.leerLinea()
+    IngresoYChequeo.chekeoDePais(pais2)
+
+    return mutableListOf<String>(pais, pais2)
+
   }
 }
 
@@ -40,10 +54,10 @@ object Programa {
     val opcion = entradaSalida.leerLinea().toInt()
     check(opcion < 7) {"Debe ingresar un numero entre 1 y 6"}
 
-    memu(opcion)
+    menu(opcion)
   }
 
-  fun memu(opcion: Int) {
+  fun menu(opcion: Int) {
 
     when (opcion) {
 
@@ -59,13 +73,8 @@ object Programa {
   // 1
 
   fun limitrofes() {
-    entradaSalida.escribirLinea("Escribe un pais:")
-    var pais = entradaSalida.leerLinea()
-    Chequeo.chekeoDePais(pais)
-
-    entradaSalida.escribirLinea("Escribe otro pais:")
-    var pais2 = entradaSalida.leerLinea()
-    Chequeo.chekeoDePais(pais2)
+    val pais = IngresoYChequeo.ingresarPaises().first()
+    val pais2 = IngresoYChequeo.ingresarPaises().last()
 
     if (Observatorio.sonLimitrofes(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son limitrofes.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son limitrofes.")
@@ -73,13 +82,8 @@ object Programa {
 
   // 2
   fun traduccion() {
-    entradaSalida.escribirLinea("Escribe un pais:")
-    var pais = entradaSalida.leerLinea()
-    Chequeo.chekeoDePais(pais)
-
-    entradaSalida.escribirLinea("Escribe otro pais:")
-    var pais2 = entradaSalida.leerLinea()
-    Chequeo.chekeoDePais(pais2)
+    val pais = IngresoYChequeo.ingresarPaises().first()
+    val pais2 = IngresoYChequeo.ingresarPaises().last()
 
     if (Observatorio.necesitanTraduccion(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} necesitan traduccion.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no nesecitan traduccion.")
@@ -87,13 +91,8 @@ object Programa {
 
   // 3
   fun aliados() {
-    entradaSalida.escribirLinea("Escribe un pais:")
-    var pais = entradaSalida.leerLinea()
-    Chequeo.chekeoDePais(pais)
-
-    entradaSalida.escribirLinea("Escribe otro pais:")
-    var pais2 = entradaSalida.leerLinea()
-    Chequeo.chekeoDePais(pais2)
+    val pais = IngresoYChequeo.ingresarPaises().first()
+    val pais2 = IngresoYChequeo.ingresarPaises().last()
 
     if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son aliados.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son aliados")
@@ -106,7 +105,7 @@ object Programa {
 
   // 5
   fun continenteMasPoblado() {
-    entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenteConMasPoblacion()} .")
+    entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenConMasPobla()} .")
   }
 }
 

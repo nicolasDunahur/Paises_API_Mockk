@@ -2,8 +2,6 @@ package ar.edu.unahur.obj2.impostoresPaises
 
 object adaptador {
 
-    var api = RestCountriesAPI()
-
     fun convertirAPais(country: Country) : Pais {
         val bloques = bloquesAString(country)
         val lenguajes = lenguajesAString(country)

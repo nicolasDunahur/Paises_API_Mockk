@@ -102,7 +102,7 @@ class ObservatorioTest : DescribeSpec({
                         "USA",
                         "Washington",
                         "America",
-                        3,
+                        30,
                         mutableListOf("CAN","MEX"),
                         mutableListOf(ingles),
                         mutableListOf()),
@@ -111,7 +111,7 @@ class ObservatorioTest : DescribeSpec({
                         "BRA",
                         "Brasilia",
                         "America",
-                        1,
+                        10,
                         mutableListOf("ARG","URU"),
                         mutableListOf(espaniol),
                         mutableListOf(MERCOSUR)),
@@ -120,7 +120,7 @@ class ObservatorioTest : DescribeSpec({
                         "",
                         "",
                         "",
-                        5,
+                        50,
                         mutableListOf("BRA"),
                         mutableListOf(),
                         mutableListOf()),
@@ -128,7 +128,7 @@ class ObservatorioTest : DescribeSpec({
                         "India",
                         "",
                         "", "",
-                        4,
+                        40,
                         mutableListOf("BRA"),
                         mutableListOf(),
                         mutableListOf()),
@@ -137,8 +137,17 @@ class ObservatorioTest : DescribeSpec({
                         "",
                         "",
                         "",
-                        2,
+                        20,
                         mutableListOf("BRA"),
+                        mutableListOf(),
+                        mutableListOf()),
+                Country(
+                        "Argentina",
+                        "",
+                        "",
+                        "",
+                        9,
+                        mutableListOf("ARG"),
                         mutableListOf(),
                         mutableListOf())
             )
@@ -148,9 +157,15 @@ class ObservatorioTest : DescribeSpec({
 
     describe("Requerimiento 5: Indicar cuál es el continente más poblado."){
         it ("El continente mas poblado es Asia"){
-            every { api.todosLosPaises() } returns listOf(Country("China", "", "", "Asia", 5, mutableListOf("CHI"), mutableListOf(), mutableListOf()),
+            every { api.todosLosPaises() } returns listOf(
+                    Country(
+                            "China", "", "", "Asia", 50, mutableListOf("CHI"), mutableListOf(), mutableListOf()),
+                    Country(
+                            "Angola", "", "", "Africa", 35, mutableListOf("ANG"), mutableListOf(), mutableListOf()),
+                    Country(
+                            "India", "", "", "Asia", 40, mutableListOf("IND"), mutableListOf(), mutableListOf()),
             )
-            Observatorio.continenteConMasPoblacion().shouldBe("Asia")
+            Observatorio.continenConMasPobla().shouldBe("Asia")
         }
     }
 })

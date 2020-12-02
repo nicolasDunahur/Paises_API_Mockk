@@ -16,4 +16,6 @@ open class Pais(
     fun necesitaTraduccionPara(otroPais: Pais) = idomasOficiales.intersect(otroPais.idomasOficiales).isEmpty()
 
     fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
+
+    fun esPotencialAliadoDe(otroPais: Pais) = comparteBloqueCon(otroPais) && !necesitaTraduccionPara(otroPais)
 }
