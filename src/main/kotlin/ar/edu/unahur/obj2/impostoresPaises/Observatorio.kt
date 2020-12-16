@@ -1,52 +1,57 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+// Analiza y arroja concluciones sobre paises y contienentes.
+
 object Observatorio {
 
     var api = RestCountriesAPI()
 
+    // Recibe como parametro el nombre de un pais y si es correcto devuelve ese pais adaptado.
 
-    fun buscarPais(nombre: String): Pais {
+    private fun buscarPais(nombre: String): Pais {
         val country = api.buscarPaisesPorNombre(nombre)
-        return adaptador.convertirAPais(country.first())
+        return Adaptador.convertirAPais(country.first())
     }
 
-    // 1
+    // 1 -- Nos devuelve si 2 paises son limitrofes o no.
+
     fun sonLimitrofes(pais: String, otro: String): Boolean {
         val unPais = buscarPais(pais)
         val otroPais = buscarPais(otro)
         return unPais.esLimitrofeDe(otroPais)
     }
 
-    // 2
+    // 2 -- Nos responde si 2 paises necesitan traduccion.
+
     fun necesitanTraduccion(nombre1: String, nombre2: String): Boolean {
         val unPais = buscarPais(nombre1)
         val otroPais = buscarPais(nombre2)
         return unPais.necesitaTraduccionPara(otroPais)
     }
 
-    // 3
+    // 3 -- Nos responde si 2 paises son potenciales aliados o no.
+
     fun sonPotencialesAliados(pais1: String, pais2: String): Boolean {
         val unPais = buscarPais(pais1)
         val otroPais = buscarPais(pais2)
-        return unPais.comparteBloqueCon(otroPais) && !unPais.necesitaTraduccionPara(otroPais)
+        return unPais.esPotencialAliadoDe(otroPais)
     }
 
     // 4
 
-    fun ordenarlosPorPoblacion() = api.todosLosPaises().map { adaptador.convertirAPais(it) }.sortedByDescending { it.poblacion }
+    // Trae todos los paises de la api y los convierte al tipo de dato pais.
+    private fun convertirAPaises() = api.todosLosPaises().map { Adaptador.convertirAPais(it) }
 
-    fun ordenadosYConNombres() = ordenarlosPorPoblacion().map { it.nombre }
+    // Ordena los paises de forma desendiente por poblacion.
+    private fun ordenarlosPorPoblacion() = convertirAPaises().sortedByDescending { it.poblacion }
 
+    // Obtenemos una lista con los nombres de los paises ordenados.
+    private fun ordenadosYConNombres() = ordenarlosPorPoblacion().map { it.nombre }
+
+    // Nos devuelve una lista con el nombre de los 5 paises mas poblados.
     fun paisesConMayorPoblacion() =
-            ordenadosYConNombres().filterIndexed  { index, s -> (index < 5) }
+        ordenadosYConNombres().take(5)
 
-    // 5
-    fun continenteConMasPoblacion() =
-            api.todosLosPaises()
-                    .map{ adaptador.convertirAPais(it)}
-                    .groupBy { it.continente }
-                    .mapValues { it.value.sumBy { it.poblacion.toInt() } }
-                    .keys
-                    .first()
-
+    // 5 -- Retorna el continente mas poblado.
+    fun continenConMasPobla() = convertirAPaises().maxByOrNull { it.poblacion }!!.continente
 }

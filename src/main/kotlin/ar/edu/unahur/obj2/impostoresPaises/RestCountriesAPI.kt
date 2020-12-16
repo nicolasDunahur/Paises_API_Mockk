@@ -8,8 +8,30 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.lang.reflect.Type
 
-// Pueden mirar cómo está hecho si les da curiosidad,
-// pero no pueden cambiar absolutamente nada de este archivo.
+// Tomamos solamente un subconjunto de la información que da la API.
+// Todos los campos disponibles pueden verse en http://restcountries.eu/#api-endpoints-response-example.
+
+data class Country(
+  val name: String,
+  val alpha3Code: String,
+  val capital: String,
+  val region: String,
+  val population: Long,
+  val borders: List<String>,
+  val languages: List<Language>,
+  val regionalBlocs: List<RegionalBloc>
+)
+
+data class Language(
+  val name: String
+)
+
+data class RegionalBloc(
+  val acronym: String,
+  val name: String
+)
+
+// Traemos la informacion de la API
 
 class RestCountriesAPI {
   private val urlBase = "https://restcountries.eu/rest/v2"
@@ -48,26 +70,3 @@ class RestCountriesAPI {
     return moshi.adapter(type)
   }
 }
-
-// Tomamos solamente un subconjunto de la información que da la API.
-// Todos los campos disponibles pueden verse en http://restcountries.eu/#api-endpoints-response-example.
-
-data class Country(
-  val name: String,
-  val alpha3Code: String,
-  val capital: String,
-  val region: String,
-  val population: Long,
-  val borders: List<String>,
-  val languages: List<Language>,
-  val regionalBlocs: List<RegionalBloc>
-)
-
-data class Language(
-  val name: String
-)
-
-data class RegionalBloc(
-  val acronym: String,
-  val name: String
-)

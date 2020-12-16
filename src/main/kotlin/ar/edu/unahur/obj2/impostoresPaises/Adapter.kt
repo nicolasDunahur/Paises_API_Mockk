@@ -1,6 +1,7 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-object adaptador {
+// El adaptador funciona como nexo entre el tipo de dato "Pais" y la RestCountriesAPI "Country"
+object Adaptador {
 
     var api = RestCountriesAPI()
 
