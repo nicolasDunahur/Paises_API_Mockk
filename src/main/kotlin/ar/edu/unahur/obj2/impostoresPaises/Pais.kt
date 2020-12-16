@@ -1,5 +1,6 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
+// Pais sirve para hacerle consultas
 open class Pais(
         val nombre:String,
         val codigoISo3: String,
@@ -15,7 +16,7 @@ open class Pais(
 
     fun necesitaTraduccionPara(otroPais: Pais) = idomasOficiales.intersect(otroPais.idomasOficiales).isEmpty()
 
-    fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
+    private fun comparteBloqueCon(otroPais: Pais) = bloqueRegional.intersect(otroPais.bloqueRegional).isNotEmpty()
 
     fun esPotencialAliadoDe(otroPais: Pais) = comparteBloqueCon(otroPais) && !necesitaTraduccionPara(otroPais)
 }

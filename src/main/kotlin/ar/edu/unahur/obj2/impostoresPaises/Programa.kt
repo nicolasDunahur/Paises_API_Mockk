@@ -2,48 +2,53 @@ package ar.edu.unahur.obj2.impostoresPaises
 
 import ar.edu.unahur.obj2.impostoresPaises.Programa.entradaSalida
 
-
+// Consola para interactuar con la pantalla.
 object Consola {
+
+  // Lee la linea que imprimimos en la pantalla.
   fun leerLinea() = readLine()!!
+
+  // Escribe determinado contenido en la pantalla.
   fun escribirLinea(contenido: String) {
     println(contenido)
   }
 }
 
+//  Ingresar datos y chequeamos si existe como pais.
 object IngresoYChequeo {
   var apichequeo = RestCountriesAPI()
 
+  // Verificamos que el string ingresado corresponde a un pais y esta escrito correctamente.
   fun chekeoDePais(unPais:String){
+    val paisesEncontrados = apichequeo.buscarPaisesPorNombre(unPais)
 
     checkNotNull(unPais) { "Sin nombre no puedo hacer nada :(" }
-
-    val paisesEncontrados = apichequeo.buscarPaisesPorNombre(unPais)
 
     check(paisesEncontrados.isNotEmpty())
     { "No encontramos nada, fijate si lo escribiste bien, debe ser en ingles." }
   }
 
+  // Tipeamos los paises que queremos comparar.
   fun ingresarPaises(): MutableList<String> {
 
     entradaSalida.escribirLinea("Escribi un pais:")
-    var pais = entradaSalida.leerLinea()
-    IngresoYChequeo.chekeoDePais(pais)
+    val pais = entradaSalida.leerLinea()
+    chekeoDePais(pais)
 
     entradaSalida.escribirLinea("Escribi otro pais:")
-    var pais2 = entradaSalida.leerLinea()
-    IngresoYChequeo.chekeoDePais(pais2)
+    val pais2 = entradaSalida.leerLinea()
+    chekeoDePais(pais2)
 
-    return mutableListOf<String>(pais, pais2)
-
+    return mutableListOf(pais, pais2)
   }
 }
 
+  // Programa con menu de opciones.
 object Programa {
-
   var entradaSalida = Consola
 
+  // Muestra el panel principal.
   fun iniciar() {
-
     entradaSalida.escribirLinea("Elegir una opcion  \n" +
             "1) Ver si 2 paises limitan.  \n" +
             "2) Analizar si 2 paises necesitan traduccion.\n" +
@@ -57,7 +62,8 @@ object Programa {
     menu(opcion)
   }
 
-  fun menu(opcion: Int) {
+  // Direcciona la ejecucion segun la opcion seleccionada.
+  private fun menu(opcion: Int) {
 
     when (opcion) {
 
@@ -70,9 +76,8 @@ object Programa {
     }
   }
 
-  // 1
-
-  fun limitrofes() {
+  // 1 -- Nos dice si 2 paises son limitrofes.
+  private fun limitrofes() {
     val pais = IngresoYChequeo.ingresarPaises().first()
     val pais2 = IngresoYChequeo.ingresarPaises().last()
 
@@ -80,8 +85,8 @@ object Programa {
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son limitrofes.")
   }
 
-  // 2
-  fun traduccion() {
+  // 2 -- Comunica si 2 paises necesitan traduccion.
+  private fun traduccion() {
     val pais = IngresoYChequeo.ingresarPaises().first()
     val pais2 = IngresoYChequeo.ingresarPaises().last()
 
@@ -89,8 +94,8 @@ object Programa {
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no nesecitan traduccion.")
   }
 
-  // 3
-  fun aliados() {
+  // 3 -- Indica si 2 paises son aliados.
+  private fun aliados() {
     val pais = IngresoYChequeo.ingresarPaises().first()
     val pais2 = IngresoYChequeo.ingresarPaises().last()
 
@@ -98,13 +103,13 @@ object Programa {
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son aliados")
   }
 
-  // 4
-  fun cincoPaisesConMayorPoblacion() {
+  // 4 -- Retorna una lista con los paises con mayor poblacion.
+  private fun cincoPaisesConMayorPoblacion() {
     entradaSalida.escribirLinea("Los paises con mayor poblacion son: ${Observatorio.paisesConMayorPoblacion()} .")
   }
 
-  // 5
-  fun continenteMasPoblado() {
+  // 5 -- Muestra el continente mas poblado.
+  private fun continenteMasPoblado() {
     entradaSalida.escribirLinea("El continente mas poblado es: ${Observatorio.continenConMasPobla()} .")
   }
 }

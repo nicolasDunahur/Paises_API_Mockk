@@ -1,6 +1,10 @@
 package ar.edu.unahur.obj2.impostoresPaises
 
-object adaptador {
+
+
+// El adaptador funciona como nexo entre el tipo de dato "Pais" y la RestCountriesAPI "Country"
+
+object Adaptador {
 
     fun convertirAPais(country: Country) : Pais {
         val bloques = bloquesAString(country)
@@ -9,7 +13,7 @@ object adaptador {
         val adaptado = Pais(
                 country.name,
                 country.alpha3Code,
-                country.population.toLong(),
+                country.population,
                 country.region,
                 bloques,
                 lenguajes,
