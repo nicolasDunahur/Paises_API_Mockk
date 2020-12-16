@@ -52,8 +52,6 @@ object Observatorio {
     fun paisesConMayorPoblacion() =
             ordenadosYConNombres().take(5)
 
-
     // 5 -- Retorna el continente mas poblado.
     fun continenConMasPobla() = convertirAPaises().maxByOrNull { it.poblacion }!!.continente
-
 }
