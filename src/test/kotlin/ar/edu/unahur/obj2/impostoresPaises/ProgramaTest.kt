@@ -79,7 +79,7 @@ class ProgramaTest : DescribeSpec({
       Programa.iniciar()
 
       verify {
-        consolaMock.escribirLinea("El continente mas poblado es: Asia.")
+        consolaMock.escribirLinea("El continente mas poblado es: Asia .")
       }
     }
   }

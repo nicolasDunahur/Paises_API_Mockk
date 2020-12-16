@@ -78,8 +78,9 @@ object Programa {
 
   // 1 -- Nos dice si 2 paises son limitrofes.
   private fun limitrofes() {
-    val pais = IngresoYChequeo.ingresarPaises().first()
-    val pais2 = IngresoYChequeo.ingresarPaises().last()
+    val paisesIngresados = IngresoYChequeo.ingresarPaises()
+    val pais = paisesIngresados.first()
+    val pais2 = paisesIngresados.last()
 
     if (Observatorio.sonLimitrofes(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son limitrofes.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son limitrofes.")
@@ -87,8 +88,9 @@ object Programa {
 
   // 2 -- Comunica si 2 paises necesitan traduccion.
   private fun traduccion() {
-    val pais = IngresoYChequeo.ingresarPaises().first()
-    val pais2 = IngresoYChequeo.ingresarPaises().last()
+    val paisesIngresados = IngresoYChequeo.ingresarPaises()
+    val pais = paisesIngresados.first()
+    val pais2 = paisesIngresados.last()
 
     if (Observatorio.necesitanTraduccion(pais, pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} necesitan traduccion.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no nesecitan traduccion.")
@@ -96,8 +98,9 @@ object Programa {
 
   // 3 -- Indica si 2 paises son aliados.
   private fun aliados() {
-    val pais = IngresoYChequeo.ingresarPaises().first()
-    val pais2 = IngresoYChequeo.ingresarPaises().last()
+    val paisesIngresados = IngresoYChequeo.ingresarPaises()
+    val pais = paisesIngresados.first()
+    val pais2 = paisesIngresados.last()
 
     if (Observatorio.sonPotencialesAliados(pais,pais2)) entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} son aliados.")
     else entradaSalida.escribirLinea("Los paises ${pais} y ${pais2} no son aliados")
